@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/switcher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.extras.BuenoCreditsActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:textColor="@color/grey_bg"
+            android:textSize="20sp" />
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/error_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_green_fill_round_5dp"
+            android:drawableLeft="@drawable/ic_refresh_white_24dp"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:text="Refresh"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.bueno.kitchen.views.font.CustomFontTextView
+                android:id="@+id/credits_text"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_black_fill_round"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+
+            <com.bueno.kitchen.views.font.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="Your Balance\n1 Point = Re. 1"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <com.bueno.kitchen.views.font.CustomFontTextView
+                android:id="@+id/credits_info_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</ViewFlipper>

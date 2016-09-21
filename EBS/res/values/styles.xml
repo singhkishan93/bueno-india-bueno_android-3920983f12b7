@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:spinnerStyle">@style/Spinnera</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItema</item>
+    </style>
+
+    <style name="Spinnera" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/list_selector_holo_light</item>
+    </style>
+
+    <style name="SpinnerDropDownItema" parent="android:Widget.DropDownItem.Spinner">
+        <item name="android:checkMark">@drawable/btn_radio_holo_light</item>
+    </style>
+
+</resources>

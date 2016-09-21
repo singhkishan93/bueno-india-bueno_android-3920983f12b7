@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="grey_line">#828894</color>
+    <color name="grey_placeholder">#d7dbe1</color>
+    <color name="veg_green">#008001</color>
+    <color name="non_veg_red">#d40000</color>
+    <color name="black_tint">#bb000000</color>
+    <color name="black_translucent">#40000000</color>
+
+    <color name="dull_black">#212121</color>
+    <color name="grey_tint">#757575</color>
+    <color name="orange">#f26325</color>
+    <color name="out_of_stock_red">#B71C1C</color>
+    <color name="coming_soon_green">#7CB342</color>
+</resources>

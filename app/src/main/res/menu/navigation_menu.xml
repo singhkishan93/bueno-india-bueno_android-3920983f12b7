@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/order_history"
+            android:checked="false"
+            android:icon="@drawable/ic_add_shopping_cart_white_24dp"
+            android:title="Order History" />
+
+        <item
+            android:id="@+id/offer"
+            android:checked="false"
+            android:icon="@drawable/ic_local_offer_black_24dp"
+            android:title="Offers" />
+
+        <item
+            android:id="@+id/credits"
+            android:checked="false"
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+            android:title="My Bueno Rewards" />
+
+        <item
+            android:id="@+id/refer"
+            android:checked="false"
+            android:icon="@drawable/ic_monetization_on_black_24dp"
+            android:title="Refer &amp; Earn" />
+
+        <item
+            android:id="@+id/loyality"
+            android:checked="false"
+            android:icon="@drawable/ic_loyalty_black_24dp"
+            android:title="Order &amp; Earn" />
+
+    </group>
+
+    <group
+        android:id="@+id/extra_group"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_info_outline_white_24dp"
+            android:title="@string/menu_about_us" />
+        <item
+            android:id="@+id/contact_us"
+            android:icon="@drawable/ic_perm_contact_calendar_white_24dp"
+            android:title="@string/menu_contact_us" />
+        <item
+            android:id="@+id/rate_us"
+            android:icon="@drawable/ic_rate_review_white_24dp"
+            android:title="@string/menu_rate_us" />
+        <item
+            android:id="@+id/blog"
+            android:icon="@drawable/ic_blog_white_24dp"
+            android:title="@string/menu_blog" />
+        <item
+            android:id="@+id/faq_policies"
+            android:icon="@drawable/ic_live_help_black_24dp"
+            android:title="@string/menu_faq" />
+    </group>
+</menu>

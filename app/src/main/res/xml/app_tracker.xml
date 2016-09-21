@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--  The following value should be replaced with correct property id. -->
+    <string
+        name="ga_trackingId"
+        translatable="false"
+        tools:ignore="TypographyDashes">UA-52675006-3
+    </string>
+
+    <!-- Percentage of events to include in reports -->
+    <string name="ga_sampleFrequency" translatable="false">100.0</string>
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!-- catch and report uncaught exceptions from the app -->
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <!-- How long a session exists before giving up -->
+    <integer name="ga_sessionTimeout">-1</integer>
+</resources>

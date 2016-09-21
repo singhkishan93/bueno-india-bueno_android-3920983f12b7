@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/switcher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bueno.kitchen.activities.extras.OffersActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:textColor="@color/grey_bg"
+            android:textSize="20sp" />
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/error_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_green_fill_round_5dp"
+            android:drawableLeft="@drawable/ic_refresh_white_24dp"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:text="Refresh"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</ViewFlipper>

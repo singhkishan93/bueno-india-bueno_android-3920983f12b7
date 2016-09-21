@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    tools:context="com.bueno.kitchen.activities.address.AddressActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintAnimationEnabled="false">
+
+        <com.bueno.kitchen.views.font.CustomFontEditText
+            android:id="@+id/locality_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location"
+            android:enabled="false"
+            android:inputType="textMultiLine" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/name_input_layout"
+        android:layout_height="wrap_content"
+        app:hintAnimationEnabled="false">
+
+        <com.bueno.kitchen.views.font.CustomFontEditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/address_input_layout"
+        android:layout_height="wrap_content">
+
+        <com.bueno.kitchen.views.font.CustomFontEditText
+            android:id="@+id/address_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:minLines="5" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.bueno.kitchen.views.font.CustomFontButton
+        android:id="@+id/add_address_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Add Address"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white" />
+
+    <com.bueno.kitchen.views.font.CustomFontButton
+        android:id="@+id/checkout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Proceed To Checkout"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Bueno</string>
+
+    <!--Keys-->
+    <string name="server_client_id">753573751563-1b9rr4ne49k9v5ldbego18i7e9a1cmjc.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">595128497300586</string>
+    <string name="google_api_key">AIzaSyAgkmuJM51Ha0z0wgu0PqEJaJk3WVa_OPE</string>
+    <string name="google_server_key">AIzaSyBDrVlQLLDz0Td_1maWZL59hoBJ71eA-bo</string>
+    <string name="intercom_key">android_sdk-be484a115ba57b69dfba67b37a61cc49c04ac861</string>
+    <string name="intercom_appid">qlbney9q</string>
+    <string name="segment_write_key">Ub8yDRBl2kykXFdO7kxjWMH3NDBa9yXo</string>
+    <string name="qgraph_key">0721a24c7de7c0cfdfd1</string>
+
+
+    <string name="toast_network_not_available">Network not available.</string>
+    <string name="toast_login_faliure">Login failure</string>
+    <string name="toast_login_successful">Login successful</string>
+
+    <!--Contacts-->
+    <string name="contact_email">info@bueno.kitchen</string>
+    <string name="contact_phone">+911139586767</string>
+
+    <!--Menus-->
+    <string name="menu_contact_us">Contact Us</string>
+    <string name="menu_about_us">About Us</string>
+    <string name="menu_rate_us">Rate Us</string>
+    <string name="menu_blog">Blog</string>
+    <string name="menu_faq">FAQs &amp; Policies</string>
+    <string name="menu_like_us">Like Us</string>
+
+    <string name="string_blank"></string>
+    <string name="about_text">Bueno, is the global food hub serving the world on a platter right to your doorstep. Literally translated to mean \"good\", team Bueno strives to bring to you good food, good quality and good experience. From our kitchen to your plate everything has the Bueno\&apos;s midas touch. Our motto is if we can\&apos;t do it exceptionally well we won\&apos;t do it at all.\n\nEverything that is on the menu is whipped up in ultra hygienic Bueno kitchens by our uncompromising star chefs, packed lovingly and delivered to your location by our own dedicated delivery team. At Bueno we are passionate about bringing good food from across cuisines to you with the ease of just a couple of taps. Delivering “goodness”, in office or at home we don\&apos;t want you to compromise on taste ever.\n\nBacked by professionals who love their food and are willing to go the extra mile to serve only the best motivated by one single guiding philosophy of providing a boundaryless experience in the most seamless manner. Never the ones to rest on our laurels, we at Bueno are always reinventing and reimagining to delight our foodie consumers.</string>
+    <string name="text_place_order">Place Order</string>
+    <string name="host_name">EBS</string>
+    <string name="online_payment_text">Online Payment</string>
+    <string name="cash_delivery_text">Cash on Delivery</string>
+    <string name="error_text">Something went wrong, please try again!!</string>
+    <string name="error_network">Kindly check your network settings</string>
+    <string name="location_error_text_2">Bueno delivery services are currently unavailable at this location due to traffic congestion. Kindly pick any other location.</string>
+    <string name="location_error_text">Bueno delivery services are currently unavailable at this location but are coming soon. Kindly pick any other location.</string>
+    <string name="location_error_text_version">You are using an older version of Bueno application. Please update your app from play store to continue.</string>
+    <string name="other_error_text">Oops something went wrong,\nplease try again!!!</string>
+    <string name="max_order_string" formatted="false">Max Quantity per order is %s. To order more products, please try placing a separate order or call %s.</string>
+    <string name="bueno_credits_info_text"><![CDATA[Welcome to <strong>My Bueno Rewards Program</strong>.<br>Ordering In with Bueno now becomes a rewarding experience like never before.<br>Bueno Rewards are conferred on all amazing patrons of Bueno. You earn credits when you refer Bueno to your friends & family, and also through our Order & Earn Program.<br>The more you order with us the more Reward Points* you earn.<br><br>(*1 Reward Point = Re.1)<br><br><strong>How to Redeem Benueno Reward Points:</strong><br>As you keep ordering from our global menu spanning 7 cuisines, you keep moving up the rewards ladder, from Gold to Platinum and ultimately to Diamond.]]></string>
+    <string name="loyalty_program_info_text_silver"><![CDATA[<b>Silver Member</b>: We are glad to share that just by signing up you are now a Silver Member with Bueno. You can now eat your way up to Gold, Platinum and Diamond membership. Each time you order you get benefits, our way of loving you back. <br><br>Signing up, you are a Silver member till your 2nd order. Flirting with the menu has begun and we know you won’t be able to stop. We will go the extra mile to make this relationship work!]]></string>
+    <string name="loyalty_program_info_text_gold"><![CDATA[<b>Gold Member</b>: Congrats you are about to embark on a delicious journey with your 2nd Order. Get 10% cash back of the total order in your Bueno account. This cannot be clubbed with any other offer/ coupon codes.<br><br>You are Bueno Gold Member from 2nd Order to the 5th Order<br><br>To know more about the Rewards Program write to us at info@bueno.kitchen]]></string>
+    <string name="loyalty_program_info_text_platinum"><![CDATA[<b>Platinum Member</b>: We appreciate the love that you have shown us. We love You Back ! With your 6th order onwards, You are now eligible to get 15% cash back of the order value in your Bueno account. This cannot be clubbed with any other offer/ coupon codes.<br><br>You are Bueno Platinum Member from 6th Order to the 20th Order.<br><br>To know more about the Rewards Program write to us at info@bueno.kitchen]]></string>
+    <string name="loyalty_program_info_text_diamond"><![CDATA[<b>Diamond Member</b>: We have come a long way and by way of our appreciation, You will now Get a cool 20% cash back of the total order in your Bueno account. This cannot be clubbed with any other offer/ coupon codes.<br><br>You are Bueno Diamond Member from your 21st Order.<br><br>To know more about the Rewards Program write to us at info@bueno.kitchen]]></string>
+    <string name="loyalty_program_info_text_footer"><![CDATA[<br><br>*1 Reward Point = Re. 1<br>*Can be redeemed any time against your order]]></string>
+    <string name="refer_earn_info_text"><![CDATA[<b>Share your love for Bueno with a friend</b><br>If you love us, shout out your love from the rooftops. Well not literally, refer Bueno to your friends in Gurgaon and in South Delhi. While your friends get a flat Rs 100 discount on their first order, You get 100 Rewards Points in your Bueno account. Isn’t that a Win-Win.<br><br>With your first order with Bueno, your referral code gets unlocked. You can share your unique Referral Code with as many friends as you like, which they can use while placing their first order.]]></string>
+    <string name="skip_text">Skip</string>
+    <string name="referral_code_subject">Bueno Referral Code</string>
+    <string name="currency_name">Rs.</string>
+</resources>

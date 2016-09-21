@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ebs.android.sdk" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".PaymentDetails"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".PaymentDetailActivity"
+            android:label="@string/title_activity_payment_detail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:label="@string/title_activity_payment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".WebViewActivity"
+            android:label="@string/title_activity_webview"
+           
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".EBSHomeConfigurableActivity"
+            android:label="@string/title_activity_test__transaction_details"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".PaymentFailureActivity"
+            android:label="@string/title_activity_payment_failure" >
+        </activity>
+        <activity
+            android:name=".IdleTimeOut"
+            android:label="@string/title_activity_idle_time_out" >
+        </activity>
+    </application>
+
+</manifest>

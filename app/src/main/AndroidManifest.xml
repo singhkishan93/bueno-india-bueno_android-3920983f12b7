@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bueno.kitchen">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- QGraph Starts -->
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- QGraph Ends -->
+
+
+    <!-- OTP Starts -->
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- OTP Ends -->
+
+
+    <!-- Location Starts -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Location Ends -->
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name=".core.BuenoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.prelogin.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.prelogin.LoginActivity"
+            android:label="Sign In"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.prelogin.OTPActivity"
+            android:label="Phone Verification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme" />
+        <activity
+            android:name=".activities.CheckoutActivity"
+            android:label="Checkout"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <data
+                    android:host="@string/host_name"
+                    android:scheme="com.bueno.kitchen" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.address.AddressActivity"
+            android:label="Add Address"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.address.AddressListActivity"
+            android:label="Pick Address"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a48d13d7626db6f4389027926df6c1267e62fd36" />
+
+        <activity
+            android:name=".activities.orders.OrdersListActivity"
+            android:label="Order History"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.orders.OrderDetailActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.ContactUsActivity"
+            android:label="Contact Us"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.AboutUsActivity"
+            android:label="About Us"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.products.ProductListActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.utils.MapActivity"
+            android:label="Track Order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.FaqActivity"
+            android:label="@string/menu_faq"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.utils.WebActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.prelogin.EmailActivity"
+            android:label="Provide Email"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.OffersActivity"
+            android:label="Offers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.BuenoCreditsActivity"
+            android:label="My Bueno Rewards"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.ReferActivity"
+            android:label="Refer n Earn"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.extras.LoyalityActivity"
+            android:label="Order &amp; Earn"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.prelogin.WalkthroughActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <!-- OTP Starts -->
+
+        <receiver android:name=".receivers.IncomingSms">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- OTP Ends -->
+
+        <!-- Google Analytics Starts-->
+        <meta-data
+            android:name="com.google.android.gms.analytics.globalConfigResource"
+            android:resource="@xml/global_tracker" />
+
+        <receiver
+            android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+
+        <receiver
+            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Google Analytics Ends-->
+
+        <!-- Facebook Starts -->
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Facebook Ends -->
+
+        <!-- Google Maps Starts -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_api_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Google Maps Ends -->
+
+        <!-- Payment Gateways Start-->
+
+        <!-- Paytm Starts-->
+
+        <activity
+            android:name="com.paytm.pgsdk.PaytmPGActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard"
+            android:screenOrientation="portrait" />
+
+        <!-- Paytm Ends-->
+
+        <!-- Mobiwik Starts-->
+
+        <activity
+            android:name="com.mobikwik.sdk.MobikwikSDK"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="MobiKwik"
+            android:theme="@style/MKSDKTransparent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.mobikwik.sdk.PGWebView"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="BankPage"
+            android:theme="@style/MKSDKTheme"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name="com.mobikwik.sdk.PaymentOptions"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/MKSDKTheme"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name="com.mobikwik.sdk.PaymentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/MKSDKTheme"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name="com.mobikwik.sdk.GetUserDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/MKSDKTheme"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <!-- Mobiwik Ends-->
+
+        <!-- Payment Gateways Ends-->
+
+    </application>
+
+</manifest>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:paddingTop="33dp">
+
+    <com.bueno.kitchen.views.font.CustomFontTextView
+        android:id="@+id/logout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_white_border"
+        android:padding="5dp"
+        android:text="Sign in"
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/username_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Welcome Guest!"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <com.bueno.kitchen.views.font.CustomFontTextView
+            android:id="@+id/membership_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Bueno Silver"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="HandlerLeak">
+        <ignore path="src/com/ebs/android/sdk/EBSPayment.java" />
+    </issue>
+    <issue id="InlinedApi" severity="ignore" />
+</lint>
