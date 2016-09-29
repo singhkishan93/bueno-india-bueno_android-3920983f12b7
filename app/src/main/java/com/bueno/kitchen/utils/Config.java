@@ -29,7 +29,7 @@ public class Config {
         String URL_ORDER_STATUS = URL_API + "/order.php";
         String URL_VALIDATE_COUPON = URL_API + "/services.php?service_type=validate_coupon&src=android";
         String URL_TRACK_ORDER = "/api/v1/user/tracking";
-        String URL_CONFIG = URL_API + "/data.json";
+        String URL_CONFIG = "http://demo9621238.mockable.io/trialapi";   //URL_API + "/data.json";
         String URL_OFFERS = URL_API + "/offers.json";
         String URL_LOYALITY = URL_API + "/services.php?service_type=get_loyalty_points";
     }

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bueno.kitchen.R;
 import com.bueno.kitchen.core.BaseActivity;
@@ -126,6 +127,8 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     private double discountApplied;
     private String paymentResponse;
     private PaymentManager paymentManager;
+
+
     private Observable.OnSubscribe<CreateOrderResponseModel> placeOrder = new Observable.OnSubscribe<CreateOrderResponseModel>() {
         @Override
         public void call(Subscriber<? super CreateOrderResponseModel> subscriber) {
@@ -169,6 +172,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             generateOrderId();
             String transactionStatus;
             JSONObject jObject;
+
             switch (getPaymentMode()) {
                 case EBS:
                     try {
@@ -238,6 +242,30 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         }
     };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private Func1<CreateOrderResponseModel, OrderModel> saveOrder = new Func1<CreateOrderResponseModel, OrderModel>() {
         @Override
         public OrderModel call(CreateOrderResponseModel createOrderResponseModel) {
@@ -255,6 +283,19 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             return orderModel;
         }
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void generateOrderId() {
         if (TextUtils.isEmpty(orderId)) {
@@ -275,6 +316,10 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         BuenoApplication.getApp().getApplicationComponents().inject(this);
         ButterKnife.bind(this);
         enableBackButton();
+
+
+
+
     }
 
     @Override
@@ -305,24 +350,51 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 
         //Payment Modes
         paymentRadioGroup.setOnCheckedChangeListener(this);
+
+
         for (Map payment : preferenceManager.getConfiguration().paymentMethods) {
             Iterator iterator = payment.entrySet().iterator();
             if (iterator.hasNext()) {
                 Map.Entry<String, String> map = (Map.Entry<String, String>) iterator.next();
                 PaymentManager.PaymentModes paymentMode = PaymentManager.PaymentModes.getMode(map.getKey());
-
                 if (paymentMode != null) {
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(map.getValue());
                     radioButton.setTag(paymentMode);
-
                     paymentRadioGroup.addView(radioButton);
-                    if (paymentMode == PaymentManager.PaymentModes.COD)
+
+                    if (paymentMode == PaymentManager.PaymentModes.COD){
                         radioButton.performClick();
+                    }else if (paymentMode == PaymentManager.PaymentModes.EBS){
+                        radioButton.performClick();
+                    }
                 }
             }
         }
     }
+
+
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        disableCoupon();
+        switch (getPaymentMode()) {
+            case COD:
+                placeOrderButton.setText(R.string.text_place_order);
+                break;
+            case EBS:
+                placeOrderButton.setText("Changed To Razor Pay");
+                break;
+            case MOBIWIK:
+            case PAYTM:
+            case RAZORPAY:
+            case PAYU:
+                placeOrderButton.setText("Proceed to Pay");
+                break;
+        }
+    }
+
+
 
     private void setUpProducts() {
         ordersListView.removeAllViews();
@@ -439,12 +511,17 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                 checkBoxCredits.setChecked(!checkBoxCredits.isChecked());
                 updatePricing(discountApplied);
                 break;
+
+
             case R.id.edit_address_button:
                 Intent intent = new Intent();
                 intent.putExtra(Config.Intents.INTENT_IS_FINISH, false);
                 setResult(RESULT_OK, intent);
                 finish();
                 break;
+
+
+
             case R.id.apply_coupon_button:
                 if (couponEditText.isEnabled()) {
                     if (isMinOrderAmountReached() && !ordersList.isEmpty() && isValidCoupon()) {
@@ -501,6 +578,8 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                                                 .show();
                                     }
 
+
+
                                     @Override
                                     public void failure(Throwable t) {
                                         disableCoupon();
@@ -521,12 +600,15 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                     disableCoupon();
                 }
                 break;
+
+
             case R.id.place_order_button:
                 if (isMinOrderAmountReached()) {
                     final ProgressDialog progressDialog = new ProgressDialog(this);
                     progressDialog.setCancelable(false);
                     progressDialog.setTitle("Loading...");
                     progressDialog.show();
+
                     restService.getProductList(preferenceManager.getLocality().id)
                             .map(new Func1<ProductListResponseModel, Boolean>() {
                                 @Override
@@ -591,6 +673,10 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         }
     }
 
+
+
+
+
     private boolean isValidCoupon() {
         couponTextInputLayout.setErrorEnabled(false);
         if (!TextUtils.isEmpty(couponEditText.getText().toString())) {
@@ -603,6 +689,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     }
 
     private void proceedPayment() {
+        Toast.makeText(CheckoutActivity.this, "In OnProceed payment method.  ", Toast.LENGTH_SHORT).show();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Loading...");
@@ -679,21 +766,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                 });
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        disableCoupon();
-        switch (getPaymentMode()) {
-            case COD:
-                placeOrderButton.setText(R.string.text_place_order);
-                break;
-            case EBS:
-            case MOBIWIK:
-            case PAYTM:
-            case PAYU:
-                placeOrderButton.setText("Proceed to Pay");
-                break;
-        }
-    }
 
     private String getPaymentModeString() {
         return ((PaymentManager.PaymentModes) findViewById(paymentRadioGroup.getCheckedRadioButtonId()).getTag()).keyString;
@@ -726,25 +798,28 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         paymentManager.onActivityResult(0, 0, intent);
     }
 
+
+
     private void initiateOnlinePayment() {
         generateOrderId();
 
         PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
                 String.valueOf(totalAmount),
                 addressModel.address);
-
         paymentManager = PaymentManager.with(this)
                 .setMode(getPaymentMode())
                 .attachCallback(new PaymentManager.PaymentCallback() {
                     @Override
                     public void onSuccess(String params) {
                         paymentResponse = params;
+                        Toast.makeText(CheckoutActivity.this, "In On Success for payment  "+params, Toast.LENGTH_SHORT).show();
 
                         //Track Payment
                         HashMap<String, String> properties = new HashMap<>();
                         properties.put("pay_mode", getPaymentModeString());
                         properties.put("gateway_response_string", params);
                         properties.put("amount", String.valueOf(totalAmount));
+
                         SegmentManager.with(CheckoutActivity.this)
                                 .setName("onlinePayment")
                                 .setProperties(properties)
@@ -756,6 +831,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                     @Override
                     public void onFailure(String message) {
                         orderFailureMessage(null);
+                        Toast.makeText(CheckoutActivity.this, "in onFailure of payment  "+message, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setConfig(paymentDetailModel)
@@ -882,4 +958,10 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             preferenceManager.saveTempOrder(ordersList);
         }
     }
+
+
+
+
+
+
 }

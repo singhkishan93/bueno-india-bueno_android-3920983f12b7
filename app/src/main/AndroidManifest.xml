@@ -263,6 +263,12 @@
 
         <!-- Payment Gateways Ends-->
 
+
+
+        <activity android:name="com.razorpay.CheckoutActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"></activity>
+
+
+
     </application>
 
 </manifest>

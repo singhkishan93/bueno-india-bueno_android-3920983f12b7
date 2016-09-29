@@ -160,4 +160,9 @@ public class PreferenceManager {
         return null;
     }
 
+
+    public String getJsonScript (){
+        return ""+sharedPreferences.getString(Config.Properties.PROPERTY_CONFIGURATION , null);
+    }
+
 }

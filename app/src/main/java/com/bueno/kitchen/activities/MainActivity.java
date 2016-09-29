@@ -110,7 +110,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     @Bind(R.id.checkout_container) public CheckoutShelfView checkoutContainer;
     @Bind(R.id.drawer_layout) public DrawerLayout drawerLayout;
     @Bind(R.id.version_text) public TextView versionTextView;
-    @Bind(R.id.toolbar) public Toolbar toolbar;
+    @Bind(R.id.toolbar)
+    public Toolbar toolbar;
     @Bind(R.id.navigation_view)
     public NavigationView navigationView;
     @Bind(R.id.loading_switcher)
@@ -132,6 +133,8 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private Subscription subscription;
     private ErrorType errorType;
     private ProductCategoryModel productCategoryModel;
+
+
     private Func1<ArrayList<ProductModel>, ArrayList<ProductModel>> mapOrders = new Func1<ArrayList<ProductModel>, ArrayList<ProductModel>>() {
         @Override
         public ArrayList<ProductModel> call(ArrayList<ProductModel> productModels) {
@@ -144,9 +147,12 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     };
 
+
     private enum ErrorType {
         LOCATION, OTHER, VERSION
     }
+
+
 
     private View.OnClickListener didClickSignOut = new View.OnClickListener() {
         @Override
@@ -166,6 +172,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             dialog.show();
         }
     };
+
+
+
+
+
+
+
+
+
+
     private View.OnClickListener didClickSignIn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -173,6 +189,16 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_LOGIN);
         }
     };
+
+
+
+
+
+
+
+
+
+
 
     private Func1<ProductListResponseModel, Observable<ProductCategoryModel>> mapProductCategories = new Func1<ProductListResponseModel, Observable<ProductCategoryModel>>() {
         @Override
@@ -219,6 +245,18 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     };
 
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,16 +264,29 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         ButterKnife.bind(this);
         BuenoApplication.getApp().getApplicationComponents().inject(this);
         setSupportActionBar(toolbar);
-
         performRedirection();
     }
 
+
+
+
+
+
+
+
     private void performRedirection() {
-        if (!preferenceManager.isWalkthroughSeen())
+        if (!preferenceManager.isWalkthroughSeen()){
             startActivityForResult(new Intent(this, WalkthroughActivity.class), REQUEST_WALKTHROUGH_SCREEN);
-        else if (!preferenceManager.isLocalityPicked()) localityView.performClick();
-        else checkUpdate();
+        }else if (!preferenceManager.isLocalityPicked()){
+            localityView.performClick();
+        }else {
+            checkUpdate();
+        }
     }
+
+
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -243,6 +294,11 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         setUpNavigationDrawer();
         setUpProductList();
     }
+
+
+
+
+
 
     private void setUpCart() {
         ArrayList<ProductModel> ordersList = preferenceManager.getTempOrder();
@@ -268,6 +324,11 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     }
 
+
+
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -279,6 +340,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
             fetchProductsList();
         }
     }
+
+
+
+
 
     private void setUpNavigationDrawer() {
         navigationView.setNavigationItemSelectedListener(this);
@@ -423,8 +488,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     }
 
+
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {

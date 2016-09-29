@@ -100,21 +100,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-
     //Google Play Services
     compile "com.google.android.gms:play-services-auth:${google_play_library_version}"
     compile "com.google.android.gms:play-services-maps:${google_play_library_version}"
     compile "com.google.android.gms:play-services-location:${google_play_library_version}"
     compile "com.google.android.gms:play-services-gcm:${google_play_library_version}"
     compile "com.google.android.gms:play-services-analytics:${google_play_library_version}"
-
     //Support Libraries
     compile "com.android.support:design:${android_support_library_version}"
     compile "com.android.support:recyclerview-v7:${android_support_library_version}"
     compile "com.android.support:cardview-v7:${android_support_library_version}"
-
     //Network
     compile 'com.squareup.retrofit2:retrofit:2.0.1'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
@@ -122,7 +119,6 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     //Utility
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.squareup:otto:1.3.8'
@@ -132,14 +128,11 @@ dependencies {
     compile 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.github.rampo.updatechecker:library:2.1.8'
     compile 'com.android.support:multidex:1.0.1'
-
     //UI
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
-
     //Payment Gateways
     compile project(':EBS')
     compile project(':MobiKwikSDKV2_1_09')
-
     //Analytics
     compile('io.intercom.android:intercom-sdk:1.+@aar') {
         transitive = true
@@ -148,7 +141,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
-
     //Segment
     compile('com.segment.analytics.android:analytics:+') {
         transitive = true
@@ -159,6 +151,6 @@ dependencies {
     compile('io.branch.segment.analytics.android.integrations:library:1.0.0-RELEASE') {
         transitive = true
     }
-
-    compile "com.quantumgraph.sdk:QG:1.1.6"
+    compile 'com.quantumgraph.sdk:QG:1.1.6'
+    compile files('libs/razorpay-android-0.13.0.jar')
 }

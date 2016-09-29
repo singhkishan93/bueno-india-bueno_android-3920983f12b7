@@ -3,12 +3,16 @@ package com.bueno.kitchen.managers.payment.core;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.bueno.kitchen.core.BuenoApplication;
 import com.bueno.kitchen.managers.PreferenceManager;
 import com.bueno.kitchen.managers.payment.EBSManager;
 import com.bueno.kitchen.managers.payment.MobiKwikManager;
+import com.bueno.kitchen.managers.payment.OlaMoneyPayManager;
+import com.bueno.kitchen.managers.payment.PayUManager;
 import com.bueno.kitchen.managers.payment.PaytmManager;
+import com.bueno.kitchen.managers.payment.RazorPayManager;
 import com.bueno.kitchen.models.core.PaymentDetailModel;
 
 import javax.inject.Inject;
@@ -17,18 +21,21 @@ import javax.inject.Inject;
  * Created by bedi on 20/03/16.
  */
 public abstract class PaymentManager {
+
     public enum PaymentModes {
         COD("COD", 2),
         EBS("EBS", 7),
         MOBIWIK("Mobikwik", 3),
         PAYTM("PayTm", 5),
-        PAYU("PayU", 1);
+        PAYU("PayUMoney", 1),
+        RAZORPAY("RazorPay", 4),
+        Olamoney("OlaMoney", 8);
+
 
         public final String keyString;
         public final int key;
 
-        PaymentModes(String keyString,
-                     int key) {
+        PaymentModes(String keyString, int key) {
             this.keyString = keyString;
             this.key = key;
         }
@@ -40,11 +47,15 @@ public abstract class PaymentManager {
                 else if (keyString.equalsIgnoreCase(MOBIWIK.keyString)) return MOBIWIK;
                 else if (keyString.equalsIgnoreCase(PAYTM.keyString)) return PAYTM;
                 else if (keyString.equalsIgnoreCase(PAYU.keyString)) return PAYU;
+                else if (keyString.equalsIgnoreCase(RAZORPAY.keyString)) return RAZORPAY;
+                else if (keyString.equalsIgnoreCase(Olamoney.keyString)) return Olamoney;
                 else return null;
             }
             return null;
         }
     }
+
+
 
     @Inject
     public PreferenceManager preferenceManager;
@@ -72,6 +83,15 @@ public abstract class PaymentManager {
         return new Builder(context);
     }
 
+
+
+
+
+
+
+
+
+
     public static class Builder {
 
         private PaymentManager paymentManager;
@@ -93,6 +113,15 @@ public abstract class PaymentManager {
                 case PAYTM:
                     paymentManager = new PaytmManager(context);
                     break;
+                case PAYU:
+                    paymentManager = new PayUManager(context);
+                    break;
+                case RAZORPAY:
+                    paymentManager = new RazorPayManager(context);
+                    break;
+                case Olamoney:
+                    paymentManager = new OlaMoneyPayManager(context);
+                    break;
             }
             return this;
         }
@@ -110,9 +139,17 @@ public abstract class PaymentManager {
         }
 
         public PaymentManager initiatePayment() {
+            Log.d("PAYMENT MANAGER ","PAYMENT INITIATED");
             paymentManager.makePayment(paymentDetailModel);
             return paymentManager;
         }
     }
+
+
+
+
+
+
+
 
 }

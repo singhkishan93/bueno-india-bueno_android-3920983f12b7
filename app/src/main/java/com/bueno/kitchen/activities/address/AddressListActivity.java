@@ -71,13 +71,13 @@ public class AddressListActivity extends BaseActivity implements AddressListAdap
                 .subscribe(new Action1<List<AddressModel>>() {
                                @Override
                                public void call(List<AddressModel> addressModels) {
-                                   if (!addressModels.isEmpty()) {
+                                   if (!addressModels.isEmpty()) {   // the address list is not empty ,
                                        if (mAdapter == null) {
                                            setUpAddressList();
                                        }
 
                                        mAdapter.addAddress(addressModels);
-                                       if (showCheckout && addressModels.size() == 1) {
+                                       if (showCheckout && addressModels.size() == 1) {  // if there is only one address in database ,  it will pick it and set it over the checkout screen
                                            OnPickAddress(addressModels.get(0));
                                        }
                                    } else
