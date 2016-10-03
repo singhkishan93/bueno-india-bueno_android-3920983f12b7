@@ -51,4 +51,9 @@
     <string name="skip_text">Skip</string>
     <string name="referral_code_subject">Bueno Referral Code</string>
     <string name="currency_name">Rs.</string>
+    <string name="title_activity_olaweb_view">OLAWebViewActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_trial">TrialActivity</string>
 </resources>

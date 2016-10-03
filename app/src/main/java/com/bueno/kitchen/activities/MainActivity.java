@@ -96,6 +96,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         CategoryGridAdapter.OnClickListener,
         CheckoutShelfView.CheckoutShelfViewInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
+
     private static final String ERROR_LOCATION = "ERROR_LOCATION";
     private static final String ERROR_LOCATION_TRAFFIC = "ERROR_LOCATION_TRAFFIC";
     private static final String ERROR_MIN_VERSION = "ERROR_MIN_VERSION";
@@ -103,6 +104,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     private static final int REQUEST_LOGIN = 103;
     private static final int REQUEST_PLACE_PICKER = 104;
     private static final int REQUEST_WALKTHROUGH_SCREEN = 105;
+
     @Bind(R.id.products_list_recycler_view) public RecyclerView productsRecyclerView;
     @Bind(R.id.product_list_swipe_layout) public SwipeRefreshLayout productsSwipeRefreshLayout;
     @Bind(R.id.location_text_view) public TextView locationTextView;
@@ -110,8 +112,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     @Bind(R.id.checkout_container) public CheckoutShelfView checkoutContainer;
     @Bind(R.id.drawer_layout) public DrawerLayout drawerLayout;
     @Bind(R.id.version_text) public TextView versionTextView;
-    @Bind(R.id.toolbar)
-    public Toolbar toolbar;
+    @Bind(R.id.toolbar) public Toolbar toolbar;
     @Bind(R.id.navigation_view)
     public NavigationView navigationView;
     @Bind(R.id.loading_switcher)
@@ -447,6 +448,11 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         productsSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
+
+
+
+
+
     private void updateLocation() {
         localityInfoTextView.setText(Html.fromHtml("<font color=#" + Integer.toHexString(ContextCompat.getColor(this, R.color.colorPrimary)) + ">Min. Order:</font> " + preferenceManager.getLocality().minOrderAmount + "<font color=#" + Integer.toHexString(ContextCompat.getColor(this, R.color.colorPrimary)) + ">, Avg. Delivery Time:</font> " + preferenceManager.getLocality().averageDeliveryTime + " Mins"));
         locationTextView.setText(preferenceManager.getLocality().geoAddress);
@@ -756,6 +762,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         return false;
     }
 
+
+
+
     @Override
     public void performCheckout() {
         if (!preferenceManager.isLoggedIn()) {
@@ -765,12 +774,21 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
     }
 
+
+
+
+
     @Override
     public void onClickItem(CategoryModel categoryModel) {
         Intent intent = new Intent(this, ProductListActivity.class);
         intent.putParcelableArrayListExtra(Config.Intents.INTENT_PRODUCT_LIST, categoryModel.productModels);
         startActivity(intent);
     }
+
+
+
+
+
 
     private Observable<LocalityModel> provideLocalityProcessorObserver(final LocalityModel prefLocalityModel,
                                                                        final ConfigResponseModel configResponseModel) {

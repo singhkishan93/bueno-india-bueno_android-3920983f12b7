@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bueno.kitchen">
+    package="com.bueno.kitchen" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -38,18 +38,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.prelogin.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.prelogin.LoginActivity"
             android:label="Sign In"
@@ -67,7 +66,7 @@
             android:name=".activities.CheckoutActivity"
             android:label="Checkout"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <data
                     android:host="@string/host_name"
@@ -77,6 +76,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="com.olacabs.olamoney.pay" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -124,7 +127,6 @@
             android:name=".activities.utils.WebActivity"
             android:label=""
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activities.prelogin.EmailActivity"
             android:label="Provide Email"
@@ -152,7 +154,7 @@
 
         <!-- OTP Starts -->
 
-        <receiver android:name=".receivers.IncomingSms">
+        <receiver android:name=".receivers.IncomingSms" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -160,7 +162,8 @@
 
         <!-- OTP Ends -->
 
-        <!-- Google Analytics Starts-->
+
+        <!-- Google Analytics Starts -->
         <meta-data
             android:name="com.google.android.gms.analytics.globalConfigResource"
             android:resource="@xml/global_tracker" />
@@ -168,26 +171,29 @@
         <receiver
             android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
-            android:enabled="true">
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
             android:exported="false" />
 
-        <!-- Google Analytics Ends-->
+        <!-- Google Analytics Ends -->
+
 
         <!-- Facebook Starts -->
 
@@ -204,6 +210,7 @@
 
         <!-- Facebook Ends -->
 
+
         <!-- Google Maps Starts -->
 
         <meta-data
@@ -215,18 +222,21 @@
 
         <!-- Google Maps Ends -->
 
-        <!-- Payment Gateways Start-->
 
-        <!-- Paytm Starts-->
+        <!-- Payment Gateways Start -->
+
+
+        <!-- Paytm Starts -->
 
         <activity
             android:name="com.paytm.pgsdk.PaytmPGActivity"
             android:configChanges="keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait" />
 
-        <!-- Paytm Ends-->
+        <!-- Paytm Ends -->
 
-        <!-- Mobiwik Starts-->
+
+        <!-- Mobiwik Starts -->
 
         <activity
             android:name="com.mobikwik.sdk.MobikwikSDK"
@@ -239,36 +249,49 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="BankPage"
             android:theme="@style/MKSDKTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.mobikwik.sdk.PaymentOptions"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/MKSDKTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.mobikwik.sdk.PaymentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/MKSDKTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.mobikwik.sdk.GetUserDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/MKSDKTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
-        <!-- Mobiwik Ends-->
-
-        <!-- Payment Gateways Ends-->
+        <!-- Mobiwik Ends -->
 
 
+        <!-- Payment Gateways Ends -->
 
-        <activity android:name="com.razorpay.CheckoutActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"></activity>
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".activities.OLAWebViewActivity"
+            android:label="@string/title_activity_olaweb_view" >
+        </activity>
+        <activity
+            android:name=".activities.TrialActivity"
+            android:label="@string/title_activity_trial" >
 
 
+        </activity>
 
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_ILgsfZCZoFIKMb"
+            />
     </application>
 
 </manifest>

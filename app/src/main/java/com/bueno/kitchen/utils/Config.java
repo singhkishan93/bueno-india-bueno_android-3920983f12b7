@@ -32,6 +32,8 @@ public class Config {
         String URL_CONFIG = "http://demo9621238.mockable.io/trialapi";   //URL_API + "/data.json";
         String URL_OFFERS = URL_API + "/offers.json";
         String URL_LOYALITY = URL_API + "/services.php?service_type=get_loyalty_points";
+
+
     }
 
     public interface PaymentGateways {

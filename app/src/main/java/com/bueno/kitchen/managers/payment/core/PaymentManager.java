@@ -1,5 +1,6 @@
 package com.bueno.kitchen.managers.payment.core;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -79,8 +80,8 @@ public abstract class PaymentManager {
 
     public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
 
-    public static Builder with(Context context) {
-        return new Builder(context);
+    public static Builder with(Context context , Activity activity) {
+        return new Builder(context ,activity);
     }
 
 
@@ -97,9 +98,11 @@ public abstract class PaymentManager {
         private PaymentManager paymentManager;
         private Context context;
         private PaymentDetailModel paymentDetailModel;
+        private Activity activityyy ;
 
-        public Builder(Context context) {
+        public Builder(Context context , Activity activity) {
             this.context = context;
+            this.activityyy = activity ;
         }
 
         public Builder setMode(PaymentModes paymentModes) {
@@ -117,7 +120,7 @@ public abstract class PaymentManager {
                     paymentManager = new PayUManager(context);
                     break;
                 case RAZORPAY:
-                    paymentManager = new RazorPayManager(context);
+                    paymentManager = new RazorPayManager(context , activityyy);
                     break;
                 case Olamoney:
                     paymentManager = new OlaMoneyPayManager(context);

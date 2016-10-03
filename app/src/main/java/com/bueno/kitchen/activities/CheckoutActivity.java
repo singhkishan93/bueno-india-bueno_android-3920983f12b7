@@ -1,5 +1,6 @@
 package com.bueno.kitchen.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -37,6 +39,8 @@ import com.bueno.kitchen.network.RestProcess;
 import com.bueno.kitchen.utils.Config;
 import com.google.android.gms.analytics.ecommerce.ProductAction;
 import com.google.gson.Gson;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +68,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener , PaymentResultListener {
 
     @Bind(R.id.subtotal_text)
     public TextView subTotalTextView;
@@ -129,9 +133,14 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     private PaymentManager paymentManager;
 
 
+    public  static Activity activity ;
+
+/////   that is API for placing order
     private Observable.OnSubscribe<CreateOrderResponseModel> placeOrder = new Observable.OnSubscribe<CreateOrderResponseModel>() {
         @Override
         public void call(Subscriber<? super CreateOrderResponseModel> subscriber) {
+
+            Toast.makeText(CheckoutActivity.this, "Inside place order CORM", Toast.LENGTH_SHORT).show();
 
             boolean isCouponApplied = !TextUtils.isEmpty(couponEditText.getText().toString());
             boolean isOnlinePayment = isOnlinePayment() && !TextUtils.isEmpty(paymentResponse);
@@ -200,6 +209,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             LocalityModel localityModel = preferenceManager.getLocality();
             CreateOrderResponseModel createOrderResponseModel;
             try {
+                Toast.makeText(CheckoutActivity.this, "Trying to create order", Toast.LENGTH_SHORT).show();
                 createOrderResponseModel = restService.createOrder("a5b5313df9625b6bc7b2273eae8abfa8",
                         "cc24028ca34c7050d00c3e53a0a4ca2c",
                         "android",
@@ -227,6 +237,9 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                         ordersMap)
                         .execute()
                         .body();
+
+
+
                 if (createOrderResponseModel.success == 1) {
                     LoyalityResponseModel loyalityResponseModel = restService.getLoyalityDataCall(preferenceManager.getMobileNumber())
                             .execute()
@@ -325,6 +338,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        activity = this ;
         setUpScreen();
     }
 
@@ -429,22 +443,36 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     }
 
     private boolean isMinOrderAmountReached() {
-        float amount = 0.0f;
-        if (ordersList != null) {
-            for (ProductModel productModel : ordersList) {
-                try {
-                    amount += (Float.valueOf(productModel.discountedPrice) * productModel.selectedQuantity);
-                } catch (Exception e) {
-                    continue;
-                }
-            }
-        }
-        if (Integer.valueOf(preferenceManager.getLocality().minOrderAmount) <= amount) {
+//        float amount = 0.0f;
+//        if (ordersList != null) {
+//
+//            Toast.makeText(CheckoutActivity.this, "miniorder value = " + preferenceManager.getLocality().minOrderAmount, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(CheckoutActivity.this, "present value for booking = " + totalAmountTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+//
+//
+//            for (ProductModel productModel : ordersList) {
+//                try {
+//                    amount += (Float.valueOf(productModel.discountedPrice) * productModel.selectedQuantity);
+//                } catch (Exception e) {
+//                    continue;
+//                }
+//            }
+//        }
+//        Toast.makeText(CheckoutActivity.this, "amount that previously devloper was checking  = " + amount, Toast.LENGTH_SHORT).show();
+//        if (Integer.valueOf(preferenceManager.getLocality().minOrderAmount) <= amount) {
+//            return true;
+//        } else {
+//            utilitySingleton.ShowToast("You haven't reached the minimum order limit!!!");
+//            return false;
+//        }
+                if (Float.valueOf(preferenceManager.getLocality().minOrderAmount) <= (Float.parseFloat(totalAmountTextView.getText().toString().replace("Rs.","").replace(" ","")) - Float.parseFloat(vatTextView.getText().toString().replace("Rs.","").replace(" ","")))) {
             return true;
         } else {
             utilitySingleton.ShowToast("You haven't reached the minimum order limit!!!");
             return false;
         }
+
+
     }
 
     private void updatePricing(double discount) {
@@ -688,8 +716,28 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         return false;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void proceedPayment() {
-        Toast.makeText(CheckoutActivity.this, "In OnProceed payment method.  ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CheckoutActivity.this, "In OnProceed payment method. ", Toast.LENGTH_SHORT).show();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Loading...");
@@ -730,11 +778,14 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                         for (ProductModel productModel : ordersList) {
                             itemIdsArray.put(productModel.id);
                         }
+
+
                         properties.put("item_ids_array", itemIdsArray.toString());
                         properties.put("pay_mode", getPaymentModeString());
                         properties.put("api_response_string", "TODO");
                         properties.put("pay_amount", String.valueOf(totalAmount));
                         properties.put("discount_amount", String.valueOf(discount));
+
                         SegmentManager.with(CheckoutActivity.this)
                                 .setName("order")
                                 .setProperties(properties)
@@ -743,6 +794,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 
 //                        ordersList = null;
                         preferenceManager.deleteTempOrder();
+
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckoutActivity.this, R.style.AppCompatAlertDialogStyle);
                         alertDialog.setTitle("Success")
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -798,46 +850,83 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         paymentManager.onActivityResult(0, 0, intent);
     }
 
-
-
     private void initiateOnlinePayment() {
         generateOrderId();
 
-        PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
-                String.valueOf(totalAmount),
-                addressModel.address);
-        paymentManager = PaymentManager.with(this)
-                .setMode(getPaymentMode())
-                .attachCallback(new PaymentManager.PaymentCallback() {
-                    @Override
-                    public void onSuccess(String params) {
-                        paymentResponse = params;
-                        Toast.makeText(CheckoutActivity.this, "In On Success for payment  "+params, Toast.LENGTH_SHORT).show();
+        Toast.makeText(CheckoutActivity.this, "initiating online payment ", Toast.LENGTH_SHORT).show();
 
-                        //Track Payment
-                        HashMap<String, String> properties = new HashMap<>();
-                        properties.put("pay_mode", getPaymentModeString());
-                        properties.put("gateway_response_string", params);
-                        properties.put("amount", String.valueOf(totalAmount));
+        switch (getPaymentMode()) {
+            case EBS:
+               hitOldStylePyment();
+                break;
+            case MOBIWIK:
+                hitOldStylePyment();
+                break;
+            case PAYTM:
+                hitOldStylePyment();
+                break;
+            case PAYU:
+                hitOldStylePyment();
+                break;
+            case RAZORPAY:
+                PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
+                        String.valueOf(totalAmount),
+                        addressModel.address);
+                hitRazorPay(paymentDetailModel);
+                break;
+            case Olamoney:
+                hitOldStylePyment();
+                break;
+        }
 
-                        SegmentManager.with(CheckoutActivity.this)
-                                .setName("onlinePayment")
-                                .setProperties(properties)
-                                .build(SegmentManager.EventType.TRACK);
 
-                        proceedPayment();
-                    }
 
-                    @Override
-                    public void onFailure(String message) {
-                        orderFailureMessage(null);
-                        Toast.makeText(CheckoutActivity.this, "in onFailure of payment  "+message, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setConfig(paymentDetailModel)
-                .initiatePayment();
+
+
+
 
     }
+
+
+
+
+
+             protected  void hitOldStylePyment(){
+                 Toast.makeText(CheckoutActivity.this, "hiting old style payment", Toast.LENGTH_SHORT).show();
+                 PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
+                         String.valueOf(totalAmount),
+                         addressModel.address);
+                 paymentManager = PaymentManager.with(CheckoutActivity.this , CheckoutActivity.this)
+                         .setMode(getPaymentMode())
+                         .attachCallback(new PaymentManager.PaymentCallback() {
+                             @Override
+                             public void onSuccess(String params) {
+                                 paymentResponse = params;
+                                 Toast.makeText(CheckoutActivity.this, "In On Success for payment  "+params, Toast.LENGTH_SHORT).show();
+
+                                 //Track Payment
+                                 HashMap<String, String> properties = new HashMap<>();
+                                 properties.put("pay_mode", getPaymentModeString());
+                                 properties.put("gateway_response_string", params);
+                                 properties.put("amount", String.valueOf(totalAmount));
+
+                                 SegmentManager.with(CheckoutActivity.this)
+                                         .setName("onlinePayment")
+                                         .setProperties(properties)
+                                         .build(SegmentManager.EventType.TRACK);
+
+                                 proceedPayment();
+                             }
+
+                             @Override
+                             public void onFailure(String message) {
+                                 orderFailureMessage(null);
+                                 Toast.makeText(CheckoutActivity.this, "in onFailure of payment  "+message, Toast.LENGTH_SHORT).show();
+                             }
+                         })
+                         .setConfig(paymentDetailModel)
+                         .initiatePayment();
+             }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -960,6 +1049,81 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     }
 
 
+
+
+
+
+
+    ////// razor pay
+
+    public  void hitRazorPay(PaymentDetailModel paymentDetailModel){
+
+        proceedPayment();
+
+
+        final Checkout co = new Checkout();
+//
+//        try {
+//            JSONObject options = new JSONObject();
+//            options.put("name", "Bueno");
+//            options.put("description", "Orders Charges");
+//            //You can omit the image option to fetch the image from dashboard
+//            options.put("image", "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZ1AAAAJDYxNmExZDRiLWNlOGMtNDg2OS04ZGMxLWUxOGFiNzFlMTRmNA.png");
+//            options.put("currency", "INR");
+//
+//            if(paymentDetailModel.amount.contains(".")){
+//                options.put("amount", ""+ paymentDetailModel.amount.replace(".", "") ) ;
+//            }else {
+//                options.put("amount", ""+ paymentDetailModel.amount + "00" );
+//            }
+//            JSONObject preFill = new JSONObject();
+//            preFill.put("email", "sm@razorpay.com");
+//            preFill.put("contact", "9876543210");
+//
+//            options.put("prefill", preFill);
+//
+//            co.open(activity, options);
+//        } catch (Exception e) {
+//            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
+//                    .show();
+//            e.printStackTrace();
+//        }
+    }
+
+
+
+    @Override
+    public void onPaymentSuccess(String paymentResponse) {
+        try {
+            //Track Payment
+            HashMap<String, String> properties = new HashMap<>();
+            properties.put("pay_mode", getPaymentModeString());
+            properties.put("gateway_response_string", paymentResponse);
+            properties.put("amount", String.valueOf(totalAmount));
+
+            SegmentManager.with(CheckoutActivity.this)
+                    .setName("onlinePayment")
+                    .setProperties(properties)
+                    .build(SegmentManager.EventType.TRACK);
+
+            proceedPayment();
+
+
+        } catch (Exception e) {
+            Log.e("eeeeeeee", "Exception in onPaymentSuccess", e);
+        }
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.d("on payment error  integer val = " , " ** " + i);
+        Log.d("on payment error  Strinfg val = " , " ** " + s);
+        try {
+            Toast.makeText(CheckoutActivity.this, "Payment hccfhbyhbfailed: " + i + "ssssssss " + s, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("pppppppp", "Exception in onPaymentError", e);
+        }
+    }
 
 
 

@@ -70,20 +70,20 @@ android {
     buildTypes {
         release {
             buildConfigField 'boolean', 'RELEASE', 'true'
-            buildConfigField('String', 'BASE_URL', '"http://bueno.kitchen"')
+            buildConfigField('String', 'BASE_URL', '"http://bueno.ennerzyy.com"')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
         debug {
             buildConfigField 'boolean', 'RELEASE', 'false'
-            buildConfigField('String', 'BASE_URL', '"http://bueno.kitchen"')
+            buildConfigField('String', 'BASE_URL', '"http://bueno.ennerzyy.com"')
             signingConfig signingConfigs.production
         }
 
         production {
             buildConfigField 'boolean', 'RELEASE', 'true'
-            buildConfigField('String', 'BASE_URL', '"http://bueno.kitchen"')
+            buildConfigField('String', 'BASE_URL', '"http://bueno.ennerzyy.com"')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.production
@@ -152,5 +152,6 @@ dependencies {
         transitive = true
     }
     compile 'com.quantumgraph.sdk:QG:1.1.6'
-    compile files('libs/razorpay-android-0.13.0.jar')
+    compile('com.razorpay:checkout:1.+')
+
 }
