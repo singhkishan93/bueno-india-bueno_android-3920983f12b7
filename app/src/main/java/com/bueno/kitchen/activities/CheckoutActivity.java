@@ -1,6 +1,5 @@
 package com.bueno.kitchen.activities;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +18,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bueno.kitchen.R;
 import com.bueno.kitchen.core.BaseActivity;
 import com.bueno.kitchen.core.BuenoApplication;
@@ -39,7 +42,6 @@ import com.bueno.kitchen.network.RestProcess;
 import com.bueno.kitchen.utils.Config;
 import com.google.android.gms.analytics.ecommerce.ProductAction;
 import com.google.gson.Gson;
-import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONArray;
@@ -68,7 +70,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener , PaymentResultListener {
+public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener ,  PaymentResultListener {
 
     @Bind(R.id.subtotal_text)
     public TextView subTotalTextView;
@@ -114,6 +116,8 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     public View creditContainer;
     @Bind(R.id.credit_text_1)
     public TextView creditTextView1;
+    @Bind(R.id.script)
+    public TextView script;
 
     @Inject
     OrderOperations orderOperations;
@@ -131,16 +135,9 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     private double discountApplied;
     private String paymentResponse;
     private PaymentManager paymentManager;
-
-
-    public  static Activity activity ;
-
-/////   that is API for placing order
     private Observable.OnSubscribe<CreateOrderResponseModel> placeOrder = new Observable.OnSubscribe<CreateOrderResponseModel>() {
         @Override
         public void call(Subscriber<? super CreateOrderResponseModel> subscriber) {
-
-            Toast.makeText(CheckoutActivity.this, "Inside place order CORM", Toast.LENGTH_SHORT).show();
 
             boolean isCouponApplied = !TextUtils.isEmpty(couponEditText.getText().toString());
             boolean isOnlinePayment = isOnlinePayment() && !TextUtils.isEmpty(paymentResponse);
@@ -181,7 +178,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             generateOrderId();
             String transactionStatus;
             JSONObject jObject;
-
             switch (getPaymentMode()) {
                 case EBS:
                     try {
@@ -209,7 +205,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             LocalityModel localityModel = preferenceManager.getLocality();
             CreateOrderResponseModel createOrderResponseModel;
             try {
-                Toast.makeText(CheckoutActivity.this, "Trying to create order", Toast.LENGTH_SHORT).show();
                 createOrderResponseModel = restService.createOrder("a5b5313df9625b6bc7b2273eae8abfa8",
                         "cc24028ca34c7050d00c3e53a0a4ca2c",
                         "android",
@@ -237,9 +232,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                         ordersMap)
                         .execute()
                         .body();
-
-
-
                 if (createOrderResponseModel.success == 1) {
                     LoyalityResponseModel loyalityResponseModel = restService.getLoyalityDataCall(preferenceManager.getMobileNumber())
                             .execute()
@@ -254,30 +246,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             }
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private Func1<CreateOrderResponseModel, OrderModel> saveOrder = new Func1<CreateOrderResponseModel, OrderModel>() {
         @Override
@@ -296,19 +264,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
             return orderModel;
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private void generateOrderId() {
         if (TextUtils.isEmpty(orderId)) {
@@ -329,16 +284,11 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         BuenoApplication.getApp().getApplicationComponents().inject(this);
         ButterKnife.bind(this);
         enableBackButton();
-
-
-
-
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        activity = this ;
         setUpScreen();
     }
 
@@ -364,51 +314,24 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 
         //Payment Modes
         paymentRadioGroup.setOnCheckedChangeListener(this);
-
-
         for (Map payment : preferenceManager.getConfiguration().paymentMethods) {
             Iterator iterator = payment.entrySet().iterator();
             if (iterator.hasNext()) {
                 Map.Entry<String, String> map = (Map.Entry<String, String>) iterator.next();
                 PaymentManager.PaymentModes paymentMode = PaymentManager.PaymentModes.getMode(map.getKey());
+
                 if (paymentMode != null) {
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(map.getValue());
                     radioButton.setTag(paymentMode);
-                    paymentRadioGroup.addView(radioButton);
 
-                    if (paymentMode == PaymentManager.PaymentModes.COD){
+                    paymentRadioGroup.addView(radioButton);
+                    if (paymentMode == PaymentManager.PaymentModes.COD)
                         radioButton.performClick();
-                    }else if (paymentMode == PaymentManager.PaymentModes.EBS){
-                        radioButton.performClick();
-                    }
                 }
             }
         }
     }
-
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        disableCoupon();
-        switch (getPaymentMode()) {
-            case COD:
-                placeOrderButton.setText(R.string.text_place_order);
-                break;
-            case EBS:
-                placeOrderButton.setText("Changed To Razor Pay");
-                break;
-            case MOBIWIK:
-            case PAYTM:
-            case RAZORPAY:
-            case PAYU:
-                placeOrderButton.setText("Proceed to Pay");
-                break;
-        }
-    }
-
-
 
     private void setUpProducts() {
         ordersListView.removeAllViews();
@@ -443,7 +366,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     }
 
     private boolean isMinOrderAmountReached() {
-//        float amount = 0.0f;
+        //        float amount = 0.0f;
 //        if (ordersList != null) {
 //
 //            Toast.makeText(CheckoutActivity.this, "miniorder value = " + preferenceManager.getLocality().minOrderAmount, Toast.LENGTH_SHORT).show();
@@ -465,13 +388,12 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 //            utilitySingleton.ShowToast("You haven't reached the minimum order limit!!!");
 //            return false;
 //        }
-                if (Float.valueOf(preferenceManager.getLocality().minOrderAmount) <= (Float.parseFloat(totalAmountTextView.getText().toString().replace("Rs.","").replace(" ","")) - Float.parseFloat(vatTextView.getText().toString().replace("Rs.","").replace(" ","")))) {
+        if (Float.valueOf(preferenceManager.getLocality().minOrderAmount) <= (Float.parseFloat(totalAmountTextView.getText().toString().replace("Rs.","").replace(" ","")) - Float.parseFloat(vatTextView.getText().toString().replace("Rs.","").replace(" ","")))) {
             return true;
         } else {
             utilitySingleton.ShowToast("You haven't reached the minimum order limit!!!");
             return false;
         }
-
 
     }
 
@@ -539,17 +461,12 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                 checkBoxCredits.setChecked(!checkBoxCredits.isChecked());
                 updatePricing(discountApplied);
                 break;
-
-
             case R.id.edit_address_button:
                 Intent intent = new Intent();
                 intent.putExtra(Config.Intents.INTENT_IS_FINISH, false);
                 setResult(RESULT_OK, intent);
                 finish();
                 break;
-
-
-
             case R.id.apply_coupon_button:
                 if (couponEditText.isEnabled()) {
                     if (isMinOrderAmountReached() && !ordersList.isEmpty() && isValidCoupon()) {
@@ -606,8 +523,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                                                 .show();
                                     }
 
-
-
                                     @Override
                                     public void failure(Throwable t) {
                                         disableCoupon();
@@ -628,15 +543,12 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                     disableCoupon();
                 }
                 break;
-
-
             case R.id.place_order_button:
                 if (isMinOrderAmountReached()) {
                     final ProgressDialog progressDialog = new ProgressDialog(this);
                     progressDialog.setCancelable(false);
                     progressDialog.setTitle("Loading...");
                     progressDialog.show();
-
                     restService.getProductList(preferenceManager.getLocality().id)
                             .map(new Func1<ProductListResponseModel, Boolean>() {
                                 @Override
@@ -666,19 +578,24 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                                         progressDialog.dismiss();
 
                                     if (isSuccess) {
-                                        if (isOnlinePayment()) {
-                                            initiateOnlinePayment();
-                                        } else {
-                                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckoutActivity.this, R.style.AppCompatAlertDialogStyle);
-                                            alertDialog.setMessage("Are you sure you want to place this order with Cash on Delivery?")
-                                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                                            proceedPayment();
-                                                        }
-                                                    })
-                                                    .setNegativeButton("No", null)
-                                                    .show();
+                                        if(getPaymentModeInt() == 999){
+                                            // here i am calling razor pay directly not bt payment manager
+                                            razorPayExecution();
+                                        }else {
+                                            if (isOnlinePayment()) {
+                                                initiateOnlinePayment();
+                                            } else {
+                                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckoutActivity.this, R.style.AppCompatAlertDialogStyle);
+                                                alertDialog.setMessage("Are you sure you want to place this order with Cash on Delivery?")
+                                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                proceedPayment();
+                                                            }
+                                                        })
+                                                        .setNegativeButton("No", null)
+                                                        .show();
+                                            }
                                         }
                                     } else {
                                         setUpProducts();
@@ -701,10 +618,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         }
     }
 
-
-
-
-
     private boolean isValidCoupon() {
         couponTextInputLayout.setErrorEnabled(false);
         if (!TextUtils.isEmpty(couponEditText.getText().toString())) {
@@ -716,28 +629,7 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
         return false;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void proceedPayment() {
-        Toast.makeText(CheckoutActivity.this, "In OnProceed payment method. ", Toast.LENGTH_SHORT).show();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Loading...");
@@ -778,14 +670,11 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                         for (ProductModel productModel : ordersList) {
                             itemIdsArray.put(productModel.id);
                         }
-
-
                         properties.put("item_ids_array", itemIdsArray.toString());
                         properties.put("pay_mode", getPaymentModeString());
                         properties.put("api_response_string", "TODO");
                         properties.put("pay_amount", String.valueOf(totalAmount));
                         properties.put("discount_amount", String.valueOf(discount));
-
                         SegmentManager.with(CheckoutActivity.this)
                                 .setName("order")
                                 .setProperties(properties)
@@ -794,7 +683,6 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 
 //                        ordersList = null;
                         preferenceManager.deleteTempOrder();
-
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckoutActivity.this, R.style.AppCompatAlertDialogStyle);
                         alertDialog.setTitle("Success")
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -818,6 +706,21 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
                 });
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        disableCoupon();
+        switch (getPaymentMode()) {
+            case COD:
+                placeOrderButton.setText(R.string.text_place_order);
+                break;
+            case EBS:
+            case MOBIWIK:
+            case PAYTM:
+            case PAYU:
+                placeOrderButton.setText("Proceed to Pay");
+                break;
+        }
+    }
 
     private String getPaymentModeString() {
         return ((PaymentManager.PaymentModes) findViewById(paymentRadioGroup.getCheckedRadioButtonId()).getTag()).keyString;
@@ -853,86 +756,47 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
     private void initiateOnlinePayment() {
         generateOrderId();
 
-        Toast.makeText(CheckoutActivity.this, "initiating online payment ", Toast.LENGTH_SHORT).show();
+        PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
+                String.valueOf(totalAmount),
+                addressModel.address);
 
-        switch (getPaymentMode()) {
-            case EBS:
-               hitOldStylePyment();
-                break;
-            case MOBIWIK:
-                hitOldStylePyment();
-                break;
-            case PAYTM:
-                hitOldStylePyment();
-                break;
-            case PAYU:
-                hitOldStylePyment();
-                break;
-            case RAZORPAY:
-                PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
-                        String.valueOf(totalAmount),
-                        addressModel.address);
-                hitRazorPay(paymentDetailModel);
-                break;
-            case Olamoney:
-                hitOldStylePyment();
-                break;
-        }
+        paymentManager = PaymentManager.with(this , CheckoutActivity.this)
+                .setMode(getPaymentMode())
+                .attachCallback(new PaymentManager.PaymentCallback() {
+                    @Override
+                    public void onSuccess(String params) {
+                        paymentResponse = params;
 
+                        //Track Payment
+                        HashMap<String, String> properties = new HashMap<>();
+                        properties.put("pay_mode", getPaymentModeString());
+                        properties.put("gateway_response_string", params);
+                        properties.put("amount", String.valueOf(totalAmount));
+                        SegmentManager.with(CheckoutActivity.this)
+                                .setName("onlinePayment")
+                                .setProperties(properties)
+                                .build(SegmentManager.EventType.TRACK);
 
+                        proceedPayment();
+                    }
 
-
-
-
+                    @Override
+                    public void onFailure(String message) {
+                        orderFailureMessage(null);
+                    }
+                })
+                .setConfig(paymentDetailModel)
+                .initiatePayment();
 
     }
-
-
-
-
-
-             protected  void hitOldStylePyment(){
-                 Toast.makeText(CheckoutActivity.this, "hiting old style payment", Toast.LENGTH_SHORT).show();
-                 PaymentDetailModel paymentDetailModel = new PaymentDetailModel(orderId,
-                         String.valueOf(totalAmount),
-                         addressModel.address);
-                 paymentManager = PaymentManager.with(CheckoutActivity.this , CheckoutActivity.this)
-                         .setMode(getPaymentMode())
-                         .attachCallback(new PaymentManager.PaymentCallback() {
-                             @Override
-                             public void onSuccess(String params) {
-                                 paymentResponse = params;
-                                 Toast.makeText(CheckoutActivity.this, "In On Success for payment  "+params, Toast.LENGTH_SHORT).show();
-
-                                 //Track Payment
-                                 HashMap<String, String> properties = new HashMap<>();
-                                 properties.put("pay_mode", getPaymentModeString());
-                                 properties.put("gateway_response_string", params);
-                                 properties.put("amount", String.valueOf(totalAmount));
-
-                                 SegmentManager.with(CheckoutActivity.this)
-                                         .setName("onlinePayment")
-                                         .setProperties(properties)
-                                         .build(SegmentManager.EventType.TRACK);
-
-                                 proceedPayment();
-                             }
-
-                             @Override
-                             public void onFailure(String message) {
-                                 orderFailureMessage(null);
-                                 Toast.makeText(CheckoutActivity.this, "in onFailure of payment  "+message, Toast.LENGTH_SHORT).show();
-                             }
-                         })
-                         .setConfig(paymentDetailModel)
-                         .initiatePayment();
-             }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         paymentManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
 
     public class DidPressPlusButton implements View.OnClickListener {
         private TextView priceTextView;
@@ -1052,78 +916,241 @@ public class CheckoutActivity extends BaseActivity implements RadioGroup.OnCheck
 
 
 
-
-
-    ////// razor pay
-
-    public  void hitRazorPay(PaymentDetailModel paymentDetailModel){
-
-        proceedPayment();
-
-
-        final Checkout co = new Checkout();
+//////////////   Razor Pay
+    public void razorPayExecution (){
+        proceedPayment_secondway("iiiiioooo");
+//        generateOrderId();
+//        PaymentDetailModel paymentDetailModel6 = new PaymentDetailModel(orderId,
+//                String.valueOf(totalAmount),
+//                addressModel.address);
+//
+//        final Checkout co = new Checkout();
 //
 //        try {
 //            JSONObject options = new JSONObject();
-//            options.put("name", "Bueno");
-//            options.put("description", "Orders Charges");
+//            options.put("name", "Beuno");
+//            options.put("description", "Order Charges");
 //            //You can omit the image option to fetch the image from dashboard
-//            options.put("image", "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZ1AAAAJDYxNmExZDRiLWNlOGMtNDg2OS04ZGMxLWUxOGFiNzFlMTRmNA.png");
+//            options.put("image", "http://bueno.kitchen/photo/web-page/1457416201unnamed.png");
 //            options.put("currency", "INR");
-//
-//            if(paymentDetailModel.amount.contains(".")){
-//                options.put("amount", ""+ paymentDetailModel.amount.replace(".", "") ) ;
+//            if(String.valueOf(paymentDetailModel6.amount).contains(".")){
+//                options.put("amount", ""+String.valueOf(paymentDetailModel6.amount).replace(".",""));
 //            }else {
-//                options.put("amount", ""+ paymentDetailModel.amount + "00" );
+//                options.put("amount", ""+String.valueOf(paymentDetailModel6.amount) + "00");
 //            }
+//            options.put("amount", "100");
+//
 //            JSONObject preFill = new JSONObject();
 //            preFill.put("email", "sm@razorpay.com");
 //            preFill.put("contact", "9876543210");
 //
-//            options.put("prefill", preFill);
+//          //  options.put("prefill", preFill);
 //
-//            co.open(activity, options);
+//            co.open(CheckoutActivity.this, options);
 //        } catch (Exception e) {
-//            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
+//            Toast.makeText(CheckoutActivity.this, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
 //                    .show();
 //            e.printStackTrace();
 //        }
     }
 
-
-
     @Override
-    public void onPaymentSuccess(String paymentResponse) {
-        try {
-            //Track Payment
-            HashMap<String, String> properties = new HashMap<>();
-            properties.put("pay_mode", getPaymentModeString());
-            properties.put("gateway_response_string", paymentResponse);
-            properties.put("amount", String.valueOf(totalAmount));
-
-            SegmentManager.with(CheckoutActivity.this)
-                    .setName("onlinePayment")
-                    .setProperties(properties)
-                    .build(SegmentManager.EventType.TRACK);
-
-            proceedPayment();
-
-
-        } catch (Exception e) {
-            Log.e("eeeeeeee", "Exception in onPaymentSuccess", e);
-        }
+    public void onPaymentSuccess(String s) {
+        Log.d("Onpayment_sucess ",""+s);
+        proceedPayment_secondway(""+s);
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-        Log.d("on payment error  integer val = " , " ** " + i);
-        Log.d("on payment error  Strinfg val = " , " ** " + s);
-        try {
-            Toast.makeText(CheckoutActivity.this, "Payment hccfhbyhbfailed: " + i + "ssssssss " + s, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.e("pppppppp", "Exception in onPaymentError", e);
-        }
+
+        Log.d("Onpayment_error ", "" + s);
     }
+
+
+
+
+
+
+
+
+
+
+
+    public void proceedPayment_secondway(String transaction_id){
+
+        boolean isCouponApplied = !TextUtils.isEmpty(couponEditText.getText().toString());
+        boolean isOnlinePayment = isOnlinePayment() && !TextUtils.isEmpty(paymentResponse);
+        String transactionStatus = "NA";
+        //Create orders Map
+        Map<String, String> ordersMap = new HashMap<>();
+        for (int i = 0; i < ordersList.size(); i++) {
+            ProductModel productModel = ordersList.get(i);
+            ordersMap.put("orders[" + i + "][meal_id]", productModel.id);
+            ordersMap.put("orders[" + i + "][qty]", productModel.selectedQuantity + "");
+            ordersMap.put("orders[" + i + "][original_price]", productModel.originalPrice);
+            ordersMap.put("orders[" + i + "][discount_price]", productModel.discountedPrice);
+        }
+
+        //Add coupons map
+        if (isCouponApplied && couponProducts!=null && !couponProducts.isEmpty()) {
+            Iterator couponIterator = couponProducts.entrySet().iterator();
+            int i = ordersList.size();
+            while (couponIterator.hasNext()) {
+                Map.Entry<String, CouponResponseModel.Item> entry = (Map.Entry<String, CouponResponseModel.Item>) couponIterator.next();
+                ordersMap.put("orders[" + i + "][meal_id]", entry.getKey());
+                ordersMap.put("orders[" + i + "][qty]", entry.getValue().quantity);
+                ordersMap.put("orders[" + i + "][original_price]", "0");
+                ordersMap.put("orders[" + i + "][discount_price]", "0");
+                i++;
+            }
+        }
+
+
+
+
+
+
+        Log.d("C* username * ", "a5b5313df9625b6bc7b2273eae8abfa8");
+        Log.d("C* password * ", "cc24028ca34c7050d00c3e53a0a4ca2c");
+        Log.d("C* tag*", "android");
+        Log.d("C* order_no*", ""+orderId);
+        Log.d("C* name *", "" + addressModel.name);
+        Log.d("C* email*", "" + preferenceManager.getEmail());
+        Log.d("C* mobile *", "" + preferenceManager.getMobileNumber());
+        Log.d("C* city*", "" + preferenceManager.getLocality().getLocationCity());
+        Log.d("C* locality*", "" + preferenceManager.getLocality().city);
+        Log.d("C* address *", "" + addressModel.address + ", " + preferenceManager.getLocality().geoAddress);
+        Log.d("C* order_amount *", "" + String.valueOf(totalAmount));
+        Log.d("C* vat *", "" + VAT + "");
+        Log.d("C* paymode *", "" + getPaymentModeInt());
+        Log.d("C* coupon_amount *", "" + String.valueOf(discount));
+        Log.d("C* instruction *", "" + instructionEditText.getText().toString());
+        Log.d("C* order_minute *", "" + preferenceManager.getLocality().averageDeliveryTime);
+        Log.d("C* order_date *", ""+orderDate );
+
+        Log.d("C* transaction_id * ", ""+transaction_id);
+        Log.d("C* transaction_details * ","need to understand code");
+        Log.d("C* coupon_code * ", "need to understand code");
+        Log.d("C* latitude * ", "" + preferenceManager.getLocality().latitude);
+        Log.d("C* longitude * ", "" + preferenceManager.getLocality().longitude);
+        Log.d("C* redeem_points * ", "need to understand code");
+        Log.d("C* rewards * ", "" + couponCashback);
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Loading...");
+        progressDialog.show();
+
+        AndroidNetworking.post("http://bueno.ennerzyy.com/webapi/index.php")
+                .addBodyParameter("username", "a5b5313df9625b6bc7b2273eae8abfa8")
+                .addBodyParameter("password", "cc24028ca34c7050d00c3e53a0a4ca2c")
+                .addBodyParameter("tag", "android")
+                .addBodyParameter("order_no", ""+orderId)
+                .addBodyParameter("name", ""+addressModel.name)
+                .addBodyParameter("email", ""+ preferenceManager.getEmail())
+                .addBodyParameter("mobile", ""+ preferenceManager.getMobileNumber())
+                .addBodyParameter("city", "" + preferenceManager.getLocality().getLocationCity())
+                .addBodyParameter("locality", "" + preferenceManager.getLocality().city)
+                .addBodyParameter("address", "" + addressModel.address + ", " + preferenceManager.getLocality().geoAddress)
+                .addBodyParameter("order_amount", "" + String.valueOf(totalAmount))
+                .addBodyParameter("vat", ""+VAT + "")
+                .addBodyParameter("paymode", ""+getPaymentModeInt())
+                .addBodyParameter("coupon_amount", ""+ String.valueOf(discount))
+                .addBodyParameter("instruction", ""+instructionEditText.getText().toString())
+                .addBodyParameter("order_minute", ""+preferenceManager.getLocality().averageDeliveryTime)
+                .addBodyParameter("order_date", ""+orderDate)
+                .addBodyParameter("transaction_id", ""+transaction_id)
+                .addBodyParameter("transaction_details", ""+transaction_id)
+                .addBodyParameter("coupon_code",""+couponEditText.getText().toString())
+                .addBodyParameter("latitude", ""+preferenceManager.getLocality().latitude)
+                .addBodyParameter("longitude", "" + preferenceManager.getLocality().longitude)
+                .addBodyParameter("redeem_points", "0")
+                .addBodyParameter("rewards", ""+couponCashback)
+                .addUrlEncodeFormBodyParameter((HashMap<String, String>) ordersMap)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        Toast.makeText(CheckoutActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+                        Log.d("reponse after proceed payment ", "" + response);
+                        script.setText(""+response);
+
+
+
+                        if (progressDialog.isShowing())
+                            progressDialog.dismiss();
+
+                        //Google Analytics
+                        for (ProductModel productModel : ordersList) {
+                            AnalyticsManager.with(productModel)
+                                    .setScreen("Checkout")
+                                    .setAction(ProductAction.ACTION_CHECKOUT)
+                                    .setQuantity(productModel.selectedQuantity)
+                                    .setCoupon(couponEditText.getText().toString())
+                                    .setOrderId(orderId)
+                                    .send();
+                        }
+
+                        //Segment Analytics
+                        HashMap<String, String> properties = new HashMap<>();
+                        if (!TextUtils.isEmpty(couponEditText.getText().toString()))
+                            properties.put("coupon_code", couponEditText.getText().toString());
+                        properties.put("locality", preferenceManager.getLocality().id);
+                        JSONArray itemIdsArray = new JSONArray();
+                        for (ProductModel productModel : ordersList) {
+                            itemIdsArray.put(productModel.id);
+                        }
+
+
+                        properties.put("item_ids_array", itemIdsArray.toString());
+                        properties.put("pay_mode", getPaymentModeString());
+                        properties.put("api_response_string", "TODO");
+                        properties.put("pay_amount", String.valueOf(totalAmount));
+                        properties.put("discount_amount", String.valueOf(discount));
+
+                        SegmentManager.with(CheckoutActivity.this)
+                                .setName("order")
+                                .setProperties(properties)
+                                .build(SegmentManager.EventType.TRACK);
+
+
+//                        ordersList = null;
+                        preferenceManager.deleteTempOrder();
+
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(CheckoutActivity.this, R.style.AppCompatAlertDialogStyle);
+                        alertDialog.setTitle("Success")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        setResult(RESULT_OK);
+                                        finish();
+                                    }
+                                })
+                                .setCancelable(false)
+                                .setMessage("Order created successfully. Your order id is " + orderId + ".")
+                                .show();
+
+
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("Place order error",""+error);
+                        Toast.makeText(CheckoutActivity.this, "eroorrrrr =" + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
+
+
+
+
 
 
 

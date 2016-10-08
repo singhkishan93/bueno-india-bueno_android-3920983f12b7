@@ -27,6 +27,9 @@ public class TrialActivity extends Activity  implements PaymentResultListener{
 
 
 
+
+
+
     public void startPayment() {
         /**
          * You need to pass current activity in order to let Razorpay create CheckoutActivity

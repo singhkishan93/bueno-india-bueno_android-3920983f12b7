@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.bueno.kitchen.core.BuenoApplication;
 import com.bueno.kitchen.managers.PreferenceManager;
 import com.bueno.kitchen.managers.payment.EBSManager;
 import com.bueno.kitchen.managers.payment.MobiKwikManager;
 import com.bueno.kitchen.managers.payment.OlaMoneyPayManager;
-import com.bueno.kitchen.managers.payment.PayUManager;
 import com.bueno.kitchen.managers.payment.PaytmManager;
 import com.bueno.kitchen.managers.payment.RazorPayManager;
 import com.bueno.kitchen.models.core.PaymentDetailModel;
@@ -23,14 +21,16 @@ import javax.inject.Inject;
  */
 public abstract class PaymentManager {
 
+
+
     public enum PaymentModes {
         COD("COD", 2),
         EBS("EBS", 7),
         MOBIWIK("Mobikwik", 3),
         PAYTM("PayTm", 5),
-        PAYU("PayUMoney", 1),
-        RAZORPAY("RazorPay", 4),
-        Olamoney("OlaMoney", 8);
+        PAYU("PayUMoney", 777),
+        RAZORPAY("RazorPay", 999),
+        Olamoney("OlaMoney", 888);
 
 
         public final String keyString;
@@ -58,6 +58,8 @@ public abstract class PaymentManager {
 
 
 
+
+
     @Inject
     public PreferenceManager preferenceManager;
     public PaymentCallback paymentCallback;
@@ -80,29 +82,20 @@ public abstract class PaymentManager {
 
     public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
 
-    public static Builder with(Context context , Activity activity) {
-        return new Builder(context ,activity);
+    public static Builder with(Context context , Activity activity ) {
+        return new Builder(context , activity);
     }
-
-
-
-
-
-
-
-
-
 
     public static class Builder {
 
         private PaymentManager paymentManager;
         private Context context;
+        private Activity activity ;
         private PaymentDetailModel paymentDetailModel;
-        private Activity activityyy ;
 
         public Builder(Context context , Activity activity) {
             this.context = context;
-            this.activityyy = activity ;
+            this.activity = activity;
         }
 
         public Builder setMode(PaymentModes paymentModes) {
@@ -116,14 +109,11 @@ public abstract class PaymentManager {
                 case PAYTM:
                     paymentManager = new PaytmManager(context);
                     break;
-                case PAYU:
-                    paymentManager = new PayUManager(context);
+                case Olamoney:
+                    paymentManager = new OlaMoneyPayManager(context , activity);
                     break;
                 case RAZORPAY:
-                    paymentManager = new RazorPayManager(context , activityyy);
-                    break;
-                case Olamoney:
-                    paymentManager = new OlaMoneyPayManager(context);
+                    paymentManager = new RazorPayManager(context , activity);
                     break;
             }
             return this;
@@ -142,17 +132,9 @@ public abstract class PaymentManager {
         }
 
         public PaymentManager initiatePayment() {
-            Log.d("PAYMENT MANAGER ","PAYMENT INITIATED");
             paymentManager.makePayment(paymentDetailModel);
             return paymentManager;
         }
     }
-
-
-
-
-
-
-
 
 }

@@ -56,6 +56,19 @@ public class Config {
         String PAYTM_MERCHANT_KEY = "5oMRUlC#@jOq9&W%";
         String PAYTM_WEBSITE = "Buenowap";
 
+        //OLA MONEY
+        String OLA_Access_Token  = "3u41p82uT1";
+        String OLA_Access_Salt  = "n7QRr98Ui4";
+        String OLA_Comment  = "paying_from_android_device";
+        String OLA_UDF  = "UDF";
+        String OLA_Currency  = "INR";
+        String OLA_ReturnUrl  = "NA";
+        String OLA_Notify_URL  = "NA";
+        String OLA_CouponCode  = "NA";
+        int OLA_RESULT_CODE = 1212 ;
+        String Key_Merchent_Bill = "merchent_bill" ;
+
+
     }
 
     public interface Properties {
@@ -96,5 +109,10 @@ public class Config {
         String URL_PRIVACY = "http://bueno.kitchen/pages/privacy_policy";
         String URL_TERMS = "http://bueno.kitchen/pages/terms_and_conditions";
         String URL_REFUND = "http://bueno.kitchen/pages/refund_and_cancellation";
+    }
+
+    public interface OrderElements{
+        String KEY_ORDER_DATE = "order_date";
+        String KEY_ORDER_ID = "order_time";
     }
 }

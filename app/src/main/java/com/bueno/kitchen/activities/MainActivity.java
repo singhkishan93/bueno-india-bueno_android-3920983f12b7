@@ -149,6 +149,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     };
 
 
+
+
+
     private enum ErrorType {
         LOCATION, OTHER, VERSION
     }
@@ -529,6 +532,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         fetchProductsList(null, null, null);
     }
 
+
+
+
+
     private void fetchProductsList(String lat, String lng, final String address) {
         final LocalityModel localityModel;
         if (!TextUtils.isEmpty(lat) && !TextUtils.isEmpty(lng)) {
@@ -543,7 +550,7 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         }
 
         if (localityModel != null) {
-            subscription = restService.getLocationConfig()
+            subscription = restService. getLocationConfig()
                     .zipWith(restService.getLoyalityData(preferenceManager.getMobileNumber()),
                             new Func2<ConfigResponseModel, LoyalityResponseModel, ConfigResponseModel>() {
                                 @Override
@@ -832,7 +839,10 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private LocalityModel provideLocality(final LocalityModel localityModel, final ConfigResponseModel configResponseModel) throws IOException {
         if (localityModel != null && configResponseModel != null) {
+
+
             Response<LocalitiesResponseModel> localityRequest = restService.getLocalities().execute();
+
             if (localityRequest.isSuccessful()) {
                 LocalitiesResponseModel localitiesResponseModel = localityRequest.body();
                 if (localitiesResponseModel != null && !localitiesResponseModel.localities.isEmpty()) {

@@ -23,7 +23,7 @@ public class RazorPayManager extends PaymentManager implements PaymentResultList
 
 
 
-    public RazorPayManager(Context context ,Activity activity ){
+    public RazorPayManager(Context context, Activity activity){
         this.context = context ;
         this.activity = activity ;
     }

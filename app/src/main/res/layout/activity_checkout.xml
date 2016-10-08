@@ -131,6 +131,16 @@
 
             </TableLayout>
 
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/script"
+                android:gravity="center"
+                android:text="script after placing order will be generated here"/>
+
             <com.bueno.kitchen.views.font.CustomFontTextView
                 android:id="@+id/coupon_text"
                 android:layout_width="wrap_content"
