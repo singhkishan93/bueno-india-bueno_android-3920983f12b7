@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
     <group android:checkableBehavior="none">
 
         <item
@@ -32,6 +35,8 @@
             android:icon="@drawable/ic_loyalty_black_24dp"
             android:title="Order &amp; Earn" />
 
+
+
     </group>
 
     <group
@@ -42,6 +47,16 @@
             android:icon="@drawable/ic_info_outline_white_24dp"
             android:title="@string/menu_about_us" />
         <item
+            android:id="@+id/bulk_order"
+            android:icon="@drawable/bulk"
+            android:checked="false"
+            android:title="@string/menu_bulk" />
+        <item
+            android:id="@+id/diksha"
+            android:checked="false"
+            android:title="Diksha"
+            android:icon="@drawable/diksha_icon" />
+        <item
             android:id="@+id/contact_us"
             android:icon="@drawable/ic_perm_contact_calendar_white_24dp"
             android:title="@string/menu_contact_us" />
@@ -49,13 +64,19 @@
             android:id="@+id/rate_us"
             android:icon="@drawable/ic_rate_review_white_24dp"
             android:title="@string/menu_rate_us" />
-        <item
-            android:id="@+id/blog"
-            android:icon="@drawable/ic_blog_white_24dp"
-            android:title="@string/menu_blog" />
+
         <item
             android:id="@+id/faq_policies"
             android:icon="@drawable/ic_live_help_black_24dp"
             android:title="@string/menu_faq" />
+
+        <item
+            android:id="@+id/become_a_Partner"
+            android:checked="false"
+            android:icon="@drawable/ic_partners"
+            android:title="@string/menu_partner" />
+
+
     </group>
+
 </menu>

@@ -1,10 +1,10 @@
-<resources>
-    <string name="app_name">Bueno</string>
+<resources xmlns:android="http://schemas.android.com/tools">
+    <string name="app_name">buéno delivery</string>
 
     <!--Keys-->
-    <string name="server_client_id">753573751563-1b9rr4ne49k9v5ldbego18i7e9a1cmjc.apps.googleusercontent.com</string>
+    <string name="server_client_id">480525442529-449uv8h53rbp0kcaqu6i4bu80sk92v3k.apps.googleusercontent.com</string>
     <string name="facebook_app_id">595128497300586</string>
-    <string name="google_api_key">AIzaSyAgkmuJM51Ha0z0wgu0PqEJaJk3WVa_OPE</string>
+    <string name="google_api_key">AIzaSyCKwsqrhvdt2EmHO8JflOUvUfBGzJEClLA</string>
     <string name="google_server_key">AIzaSyBDrVlQLLDz0Td_1maWZL59hoBJ71eA-bo</string>
     <string name="intercom_key">android_sdk-be484a115ba57b69dfba67b37a61cc49c04ac861</string>
     <string name="intercom_appid">qlbney9q</string>
@@ -27,9 +27,32 @@
     <string name="menu_blog">Blog</string>
     <string name="menu_faq">FAQs &amp; Policies</string>
     <string name="menu_like_us">Like Us</string>
+    <string name="menu_partner">Partner with us</string>
+    <string name="menu_bulk">Bulk Orders</string>
+
+    <string name="bulk_text1"><big><b>We undertake small as well as large scale orders for all corporate/home/other events.</b></big></string>
+    <string name="bulk_text2">Call / WhatsApp us on:\n\n<b>+91-9811910258, +91-9899119353</b></string>
+    <string name="bulk_text3">Email us on:\n\n<b>sales@bueno.cafe</b></string>
+
+
+
 
     <string name="string_blank"></string>
     <string name="about_text">Bueno, is the global food hub serving the world on a platter right to your doorstep. Literally translated to mean \"good\", team Bueno strives to bring to you good food, good quality and good experience. From our kitchen to your plate everything has the Bueno\&apos;s midas touch. Our motto is if we can\&apos;t do it exceptionally well we won\&apos;t do it at all.\n\nEverything that is on the menu is whipped up in ultra hygienic Bueno kitchens by our uncompromising star chefs, packed lovingly and delivered to your location by our own dedicated delivery team. At Bueno we are passionate about bringing good food from across cuisines to you with the ease of just a couple of taps. Delivering “goodness”, in office or at home we don\&apos;t want you to compromise on taste ever.\n\nBacked by professionals who love their food and are willing to go the extra mile to serve only the best motivated by one single guiding philosophy of providing a boundaryless experience in the most seamless manner. Never the ones to rest on our laurels, we at Bueno are always reinventing and reimagining to delight our foodie consumers.</string>
+    <string name="about_text_2"><b>We believe in the goodness of food.</b>Our products are sourced directly from farmers to ensure that you get the best quality> - straight from the farm to your plate. We have no preservatives, artificial flavours or colouring in our food. Everything in our kitchen is <b>baked fresh every day.</b>\n\nWith signature multigrain and wholewheat breads, fresh buns and patties, we offer an exciting range of sandwiches and burgers. Our desserts are also handcrafted with high quality ingredients. Everything is made from scratch with a lot of love. At buéno it is our constant endeavour to give you the best quality at the best price.\n\n Our sandwiches, lavash and dips and desserts are also available in shops across Delhi NCR. buéno cookies and desserts are packed in a reusable jar and are ideal for midnight indulgences or to gift a fellow foodie. Grab buéno  for a quick bite anytime of the day or night and we promise you will come back for more.\n\n We believe that good food should always come with an awareness of its impact on the environment. We have a zero waste policy and are now working towards ensuring that all our packaging is eco friendly and can either be reused or recycled. Help us create a more sustainable world. Refuse plastic spoons, forks, extra napkins or carry bags if you don\'t need it. </string>
+    <string name="about_text_3">\nbuéno café Open Now in the heart of Gurgaon!</string>
+    <string name="about_text_4"><i>Visit us for a fresh, hearty, wholesome and satisfying meal at:</i>\n108, Vijay Vihar\nSilokhera Road, Sector 30\n(between BPTP Park Centre &amp; Uniworld City)\nGurgaon, Haryana - 122001</string>
+
+    <string name="ngo_text_1"><b>Gift a future with buéno</b>\nWe are closely associated with DIKSHA, a school which provides a stimulating learning environment to 250 children from low income families from the neighbourhood. By purchasing our product you have gifted a child who attends Diksha an education and a chance of a better future.</string>
+    <string name="ngo_text_2">\nTo know more / make a contribution\nvisit their Facebook Page @<b>Dikshaschoolindia</b>\nor</string>
+    <string name="ngo_url"><a href="www.dikshaschoolindia.org">view more</a></string>
+
+    <string name="partner"><b>Become a Partner!</b></string>
+    <string name="partner_text_1">We are looking for people with an enthusiasm similar to ours to join in our effort to provide good food across Delhi NCR and India. We have different retail models - Cafe, Kiosk (stand alone or in an office building), shop-in-shop and retail / office / institutional distribution.\n\nIf you are interested in becoming a <b>Franchise Partner</b></string>
+    <string name="partner_text_2">Contact us at\t</string>
+    <string name="partner_text_3"><b>+91 9811910258</b></string>
+    <string name="partner_text_4">or write to us at <b>partners@bueno.cafe</b></string>
+
     <string name="text_place_order">Place Order</string>
     <string name="host_name">EBS</string>
     <string name="online_payment_text">Online Payment</string>
@@ -41,7 +64,6 @@
     <string name="location_error_text_version">You are using an older version of Bueno application. Please update your app from play store to continue.</string>
     <string name="other_error_text">Oops something went wrong,\nplease try again!!!</string>
     <string name="max_order_string" formatted="false">Max Quantity per order is %s. To order more products, please try placing a separate order or call %s.</string>
-    <string name="bueno_credits_info_text"><![CDATA[Welcome to <strong>My Bueno Rewards Program</strong>.<br>Ordering In with Bueno now becomes a rewarding experience like never before.<br>Bueno Rewards are conferred on all amazing patrons of Bueno. You earn credits when you refer Bueno to your friends & family, and also through our Order & Earn Program.<br>The more you order with us the more Reward Points* you earn.<br><br>(*1 Reward Point = Re.1)<br><br><strong>How to Redeem Benueno Reward Points:</strong><br>As you keep ordering from our global menu spanning 7 cuisines, you keep moving up the rewards ladder, from Gold to Platinum and ultimately to Diamond.]]></string>
     <string name="loyalty_program_info_text_silver"><![CDATA[<b>Silver Member</b>: We are glad to share that just by signing up you are now a Silver Member with Bueno. You can now eat your way up to Gold, Platinum and Diamond membership. Each time you order you get benefits, our way of loving you back. <br><br>Signing up, you are a Silver member till your 2nd order. Flirting with the menu has begun and we know you won’t be able to stop. We will go the extra mile to make this relationship work!]]></string>
     <string name="loyalty_program_info_text_gold"><![CDATA[<b>Gold Member</b>: Congrats you are about to embark on a delicious journey with your 2nd Order. Get 10% cash back of the total order in your Bueno account. This cannot be clubbed with any other offer/ coupon codes.<br><br>You are Bueno Gold Member from 2nd Order to the 5th Order<br><br>To know more about the Rewards Program write to us at info@bueno.kitchen]]></string>
     <string name="loyalty_program_info_text_platinum"><![CDATA[<b>Platinum Member</b>: We appreciate the love that you have shown us. We love You Back ! With your 6th order onwards, You are now eligible to get 15% cash back of the order value in your Bueno account. This cannot be clubbed with any other offer/ coupon codes.<br><br>You are Bueno Platinum Member from 6th Order to the 20th Order.<br><br>To know more about the Rewards Program write to us at info@bueno.kitchen]]></string>
@@ -56,4 +78,13 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_trial">TrialActivity</string>
+    <string name="title_activity_web_view_diksha">Diksha</string>
+    <string name="razor_pay_live_key">rzp_live_qwB115wRJTGvSb</string>
+    <string name="razor_pay_test_key">rzp_test_hor6h8ftf1nqTr</string>
+
+
+    <string name="bueno_credits_info_text"><![CDATA[Welcome to <strong>My Bueno Rewards Program</strong>.<br>Ordering In with Bueno now becomes a rewarding experience like never before.<br>Bueno Rewards are conferred on all amazing patrons of Bueno. You earn credits when you refer Bueno to your friends & family, and also through our Order & Earn Program.<br>The more you order with us the more Reward Points* you earn.<br><br>(*1 Reward Point = Re.1)<br><br><strong>How to Redeem Benueno Reward Points:</strong><br>As you keep ordering from our global menu spanning 7 cuisines, you keep moving up the rewards ladder, from Gold to Platinum and ultimately to Diamond.<br><br><strong>Kind Attention:</strong><br><br><strong>We have temporarily stopped redemption of your rewards / points but are coming back with a blockbuster redemption program.</strong><br><br><strong>In the meanwhile, basis your membership tier (Gold/Diamond/Platinum),you will still accrue cashbacks in each order basis our \'Order & Earn\' program. Please stay with us and keep ordering/referring for greater benefits in the near future ! </strong><br>]]></string>
+    <string name="title_activity_become_partner">Partners</string>
+
+
 </resources>

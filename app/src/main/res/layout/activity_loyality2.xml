@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bueno.kitchen.activities.extras.LoyalityActivity">
+    tools:context="com.buenodelivery.kitchen.activities.extras.LoyalityActivity">
 
-    <com.bueno.kitchen.views.font.CustomFontTextView
+    <com.buenodelivery.kitchen.views.font.CustomFontTextView
         android:id="@+id/loyalty_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

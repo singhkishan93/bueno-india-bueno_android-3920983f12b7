@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:scrollbars="none"
-    tools:context="com.bueno.kitchen.activities.orders.OrderDetailActivity">
+    tools:context="com.buenodelivery.kitchen.activities.orders.OrderDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,19 +32,19 @@
                 android:orientation="horizontal"
                 android:paddingRight="10dp">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Order Status: "
                     android:textColor="@color/colorPrimary" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/order_status_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <com.bueno.kitchen.views.font.CustomFontButton
+            <com.buenodelivery.kitchen.views.font.CustomFontButton
                 android:id="@+id/track_order_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:visibility="invisible" />
         </RelativeLayout>
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -87,12 +87,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subtotal" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/subtotal_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,12 +103,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Discount" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/discount_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,12 +119,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VAT" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/vat_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,14 +135,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total"
                     android:textColor="@android:color/black"
                     app:typeface="roboto_bold" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/total_amount_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,13 +163,13 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Instructions: "
                 android:textColor="@color/colorPrimary" />
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/instruction_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -184,13 +184,13 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Payment Mode: "
                 android:textColor="@color/colorPrimary" />
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/payment_mode_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

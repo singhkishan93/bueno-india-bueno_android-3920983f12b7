@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bueno.kitchen.activities.prelogin.WalkthroughActivity">
+    tools:context="com.buenodelivery.kitchen.activities.prelogin.WalkthroughActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager_main"
@@ -27,7 +27,7 @@
             app:pageColor="@android:color/white"
             app:strokeWidth="0dp" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/skip_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

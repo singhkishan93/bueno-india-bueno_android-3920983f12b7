@@ -1,4 +1,4 @@
-package com.bueno.kitchen;
+package com.buenodelivery.kitchen;
 
 import org.junit.Test;
 

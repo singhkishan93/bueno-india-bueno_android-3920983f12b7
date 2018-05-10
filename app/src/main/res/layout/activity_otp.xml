@@ -9,7 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bueno.kitchen.activities.prelogin.OTPActivity">
+    android:background="@drawable/otpbackground"
+    tools:context="com.buenodelivery.kitchen.activities.prelogin.OTPActivity">
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/phone_text_input"
@@ -17,11 +19,11 @@
         android:layout_height="wrap_content"
         app:errorEnabled="true">
 
-        <com.bueno.kitchen.views.font.CustomFontEditText
+        <com.buenodelivery.kitchen.views.font.CustomFontEditText
             android:id="@+id/phone_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile"
+            android:hint="Enter Mobile Number"
             android:inputType="phone"
             android:maxLength="10"
             android:paddingBottom="15dp"
@@ -43,11 +45,11 @@
             android:visibility="visible"
             app:errorEnabled="true">
 
-            <com.bueno.kitchen.views.font.CustomFontEditText
+            <com.buenodelivery.kitchen.views.font.CustomFontEditText
                 android:id="@+id/otp_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="OTP"
+                android:hint="Enter Mobile Number"
                 android:inputType="number"
                 android:maxLength="4"
                 android:paddingBottom="15dp"
@@ -55,7 +57,7 @@
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/timer_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +66,7 @@
             android:singleLine="true"
             android:text="60 seconds left" />
 
-        <com.bueno.kitchen.views.font.CustomFontButton
+        <com.buenodelivery.kitchen.views.font.CustomFontButton
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,18 +77,18 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-    <com.bueno.kitchen.views.font.CustomFontButton
+    <com.buenodelivery.kitchen.views.font.CustomFontButton
         android:id="@+id/otp_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/round_corners_blck_bckgrnd"
         android:text="SMS OTP"
         android:layout_marginTop="15dp"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-    <com.bueno.kitchen.views.font.CustomFontButton
+    <com.buenodelivery.kitchen.views.font.CustomFontButton
         android:id="@+id/voice_otp_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

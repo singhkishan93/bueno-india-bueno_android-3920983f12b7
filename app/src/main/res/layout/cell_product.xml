@@ -4,7 +4,7 @@
     android:layout_height="230dp"
     android:padding="2dp">
 
-    <com.bueno.kitchen.views.ProductCellView
+    <com.buenodelivery.kitchen.views.ProductCellView
         android:id="@+id/product_cell_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

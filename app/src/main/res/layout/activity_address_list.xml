@@ -6,5 +6,5 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    tools:context="com.bueno.kitchen.activities.address.AddressListActivity" />
+    tools:context="com.buenodelivery.kitchen.activities.address.AddressListActivity" />
 

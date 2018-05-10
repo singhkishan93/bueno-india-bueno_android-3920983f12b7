@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bueno.kitchen" >
+    package="com.buenodelivery.kitchen">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -38,18 +38,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activities.prelogin.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
         <activity
             android:name=".activities.prelogin.LoginActivity"
@@ -61,14 +59,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.MainActivity"
-            android:label=""
+            android:label="Bueno cafe"
             android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".activities.CheckoutActivity"
             android:label="Checkout"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <data
                     android:host="@string/host_name"
@@ -103,7 +101,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.orders.OrderDetailActivity"
-            android:label=""
+            android:label="Order"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.extras.ContactUsActivity"
@@ -115,7 +113,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.products.ProductListActivity"
-            android:label=""
+            android:label=" "
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.utils.MapActivity"
@@ -127,7 +125,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.utils.WebActivity"
-            android:label=""
+            android:label=" "
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.prelogin.EmailActivity"
@@ -156,7 +154,7 @@
 
         <!-- OTP Starts -->
 
-        <receiver android:name=".receivers.IncomingSms" >
+        <receiver android:name=".receivers.IncomingSms">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -173,7 +171,7 @@
         <receiver
             android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
@@ -183,7 +181,7 @@
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
-            android:enabled="true" >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
             </intent-filter>
@@ -281,21 +279,26 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".activities.OLAWebViewActivity"
-            android:label="@string/title_activity_olaweb_view" >
-
-
-        </activity>
+            android:label="@string/title_activity_olaweb_view" />
         <activity
             android:name=".activities.TrialActivity"
-            android:label="@string/title_activity_trial" >
+            android:label="@string/title_activity_trial" />
 
+        <metameta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="@string/razor_pay_live_key" />
+
+        <activity
+            android:name=".activities.extras.WebViewDikshaActivity"
+            android:label="@string/title_activity_web_view_diksha" />
+        <activity
+            android:name=".activities.extras.BecomePartnerActivity"
+            android:label="@string/title_activity_become_partner" />
+        <activity android:name=".activities.extras.BulkOrder"
+            android:label="@string/menu_bulk"
+            >
 
         </activity>
-
-        <meta-data
-            android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_ILgsfZCZoFIKMb"
-            />
     </application>
 
 </manifest>

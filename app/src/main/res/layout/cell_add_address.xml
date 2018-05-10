@@ -5,7 +5,7 @@
     android:paddingBottom="16dp"
     android:orientation="vertical">
 
-    <com.bueno.kitchen.views.font.CustomFontTextView
+    <com.buenodelivery.kitchen.views.font.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_green_button"

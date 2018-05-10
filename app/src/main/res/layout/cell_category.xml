@@ -21,7 +21,7 @@
         android:paddingRight="10dp"
         android:paddingTop="30dp">
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/category_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

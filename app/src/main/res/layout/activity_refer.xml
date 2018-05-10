@@ -22,7 +22,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/error_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textColor="@color/grey_bg"
             android:textSize="20sp" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/error_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:padding="12dp"
                 android:visibility="gone">
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
@@ -78,7 +78,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/referral_code_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
 
             </LinearLayout>
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/refer_info_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

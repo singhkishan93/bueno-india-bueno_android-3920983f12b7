@@ -13,7 +13,7 @@
         android:padding="12dp"
         android:weightSum="7">
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/offer_code_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:textColor="@color/coming_soon_green"
             android:textSize="15sp" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/offer_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

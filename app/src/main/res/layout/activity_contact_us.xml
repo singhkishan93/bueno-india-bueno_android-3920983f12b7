@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bueno.kitchen.activities.extras.ContactUsActivity">
+    tools:context="com.buenodelivery.kitchen.activities.extras.ContactUsActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_email_white_24dp" />
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_call_white_24dp" />
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/call_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

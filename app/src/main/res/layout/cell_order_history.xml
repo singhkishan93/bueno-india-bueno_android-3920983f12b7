@@ -11,13 +11,13 @@
         android:paddingBottom="5dp"
         android:orientation="horizontal">
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/item_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7.5" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/item_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

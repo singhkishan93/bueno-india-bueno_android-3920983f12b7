@@ -5,8 +5,16 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:paddingTop="33dp">
+    <ImageView
+        android:id="@+id/splash_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/navigation_header"
+        android:scaleType="centerCrop"
+        android:alpha="0.5"
+        />
 
-    <com.bueno.kitchen.views.font.CustomFontTextView
+    <com.buenodelivery.kitchen.views.font.CustomFontTextView
         android:id="@+id/logout_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +41,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +50,7 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
-        <com.bueno.kitchen.views.font.CustomFontTextView
+        <com.buenodelivery.kitchen.views.font.CustomFontTextView
             android:id="@+id/membership_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

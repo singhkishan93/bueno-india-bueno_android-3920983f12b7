@@ -11,14 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:focusableInTouchMode="true"
     android:focusable="true"
-    tools:context="com.bueno.kitchen.activities.address.AddressActivity">
+    tools:context="com.buenodelivery.kitchen.activities.address.AddressActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hintAnimationEnabled="false">
 
-        <com.bueno.kitchen.views.font.CustomFontEditText
+        <com.buenodelivery.kitchen.views.font.CustomFontEditText
             android:id="@+id/locality_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         app:hintAnimationEnabled="false">
 
-        <com.bueno.kitchen.views.font.CustomFontEditText
+        <com.buenodelivery.kitchen.views.font.CustomFontEditText
             android:id="@+id/name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:id="@+id/address_input_layout"
         android:layout_height="wrap_content">
 
-        <com.bueno.kitchen.views.font.CustomFontEditText
+        <com.buenodelivery.kitchen.views.font.CustomFontEditText
             android:id="@+id/address_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <com.bueno.kitchen.views.font.CustomFontButton
+    <com.buenodelivery.kitchen.views.font.CustomFontButton
         android:id="@+id/add_address_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:layout_marginTop="10dp"
         android:textColor="@android:color/white" />
 
-    <com.bueno.kitchen.views.font.CustomFontButton
+    <com.buenodelivery.kitchen.views.font.CustomFontButton
         android:id="@+id/checkout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context="com.bueno.kitchen.activities.CheckoutActivity">
+    tools:context="com.buenodelivery.kitchen.activities.CheckoutActivity">
 
     <ScrollView
         android:id="@+id/scroll_container"
@@ -16,13 +16,14 @@
         android:scrollbars="none">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -36,112 +37,11 @@
                 android:id="@+id/order_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical" >
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:stretchColumns="0">
+                </LinearLayout>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Subtotal" />
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:id="@+id/subtotal_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs. 0" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Discount" />
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:id="@+id/discount_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs. 0" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/credit_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bueno Rewards Used" />
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:id="@+id/credit_text_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="VAT" />
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:id="@+id/vat_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs. 0" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Total"
-                        android:textColor="@android:color/black"
-                        app:typeface="roboto_bold" />
-
-                    <com.bueno.kitchen.views.font.CustomFontTextView
-                        android:id="@+id/total_amount_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs. 0"
-                        android:textColor="@android:color/black"
-                        app:typeface="roboto_bold" />
-                </TableRow>
-
-            </TableLayout>
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/script"
-                android:gravity="center"
-                android:text="script after placing order will be generated here"/>
-
-            <com.bueno.kitchen.views.font.CustomFontTextView
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:id="@+id/coupon_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +64,7 @@
                     android:checked="false"
                     android:clickable="false" />
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/credit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
-                <com.bueno.kitchen.views.font.CustomFontEditText
+                <com.buenodelivery.kitchen.views.font.CustomFontEditText
                     android:id="@+id/instruction_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,7 +91,8 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <com.bueno.kitchen.views.font.CustomFontTextView
+
+            <com.buenodelivery.kitchen.views.font.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -199,14 +100,192 @@
                 android:text="Payment Modes"
                 android:textColor="@color/colorPrimary" />
 
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:stretchColumns="0">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Subtotal" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/subtotal_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                    android:id="@+id/ngo_donate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diksha" />
+
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                    android:id="@+id/ngo_donate_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rs. 0" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/delivery_charge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery Charge" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/delivery_charge_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow><TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/packaging_charge"
+                    android:text="Packaging Charge" />
+
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                    android:id="@+id/packaging_charge_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rs. 0" />
+            </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discount" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/discount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/credit_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bueno Rewards Used" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/credit_text_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/vat_text"
+                        android:text="VAT" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/vat_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_tax"
+                        android:text="Service Tax" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/service_tax_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_charge"
+                        android:text="Service Charge" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/service_charge_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textColor="@android:color/black"
+                        app:typeface="roboto_bold" />
+
+                    <com.buenodelivery.kitchen.views.font.CustomFontTextView
+                        android:id="@+id/total_amount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs. 0"
+                        android:textColor="@android:color/black"
+                        app:typeface="roboto_bold" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/checkout_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+
             <RadioGroup
                 android:id="@+id/payment_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -219,7 +298,7 @@
                     android:layout_toLeftOf="@+id/apply_coupon_button"
                     app:hintAnimationEnabled="false">
 
-                    <com.bueno.kitchen.views.font.CustomFontEditText
+                    <com.buenodelivery.kitchen.views.font.CustomFontEditText
                         android:id="@+id/coupon_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -233,7 +312,7 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <com.bueno.kitchen.views.font.CustomFontTextView
+                <com.buenodelivery.kitchen.views.font.CustomFontTextView
                     android:id="@+id/apply_coupon_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -246,10 +325,12 @@
                     android:textSize="14sp" />
 
             </RelativeLayout>
+
+
         </LinearLayout>
     </ScrollView>
 
-    <com.bueno.kitchen.views.font.CustomFontButton
+    <com.buenodelivery.kitchen.views.font.CustomFontButton
         android:id="@+id/place_order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
